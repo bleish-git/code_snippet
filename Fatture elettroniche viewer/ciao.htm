@@ -1,0 +1,649 @@
+<!DOCTYPE HTML><html xmlns:a="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" xmlns:b="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1" xmlns:c="http://www.fatturapa.gov.it/sdi/fatturapa/v1.0" xmlns:d="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.0">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <style type="text/css">
+
+          #fattura-elettronica
+          {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1280px;
+          min-width: 800px;
+          padding: 0;  }
+
+          #fattura-elettronica
+          div.page {
+          }
+
+          .tbHeader
+          {
+          width: 800px;
+          border: 2px solid black;
+          }
+
+
+          tr td {vertical-align: top;}
+
+          .tdHead {
+          width: 50%;
+          height: 91px;
+          border: 1px solid black;
+          }
+
+          .tableHead
+          {
+          font-size:smaller;
+          width: 100%;
+          }
+
+          .headBorder
+          {
+          
+          }
+
+          .headerLabel
+          {
+          color:#282828;
+          font-weight:bold;
+
+
+          }
+
+          .headContent
+          {
+          margin-left:10px;
+          margin-bottom:0px
+          }
+
+          .mt5
+          {
+          margin-top:5px
+          }
+
+
+          tr.break { page-break-after: always; }
+
+          .ulAllegati
+          {
+          margin-top:0px;
+          }
+
+
+          .separa
+          {
+          height:20px;
+          }
+
+          table.tbTitolo
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:normal; 
+          }
+          table.tbTitolo th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          border-bottom: none;
+          background-color: LightCyan;
+          font-size:x-small;
+
+          }
+
+
+          table.tbFoglio
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:break-word;
+          }
+		  
+          table.tbFoglio th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          background-color: LightGrey;
+
+          
+          font-size:x-small;
+
+
+          }
+
+          table.tbFoglio tbody
+          {
+          border: solid 1px #000000;
+          }
+
+          table.tbFoglio th .perc
+          {
+          width:50px;
+          }
+
+          table.tbFoglio td {
+          font-size:small;
+
+          border-right: solid 1px #000000;
+          border-bottom: none;
+          border-left: solid 1px #000000;
+          }
+
+          table.tbFoglio tr {
+
+
+          }
+
+          .textRight
+          {
+          text-align:right;
+          }
+
+          .textCenter
+          {
+          text-align:center;
+          }
+
+          .textPerc
+          {
+          width:50px;
+          }
+
+          td.Ritenuta
+          {
+          width:50px;
+          text-align:center;
+          }
+
+          th.title, .title td {
+          width:48%
+          }
+
+          th.perc {
+          width:50px;
+          }
+
+          th.perc2 {
+          width:40px;
+          }
+
+          th.data {
+          width:80px;
+          }
+
+          th.import
+          {
+          width:100px;
+          }
+
+          td.import
+          {
+          text-align:right;
+          }
+
+          th.import2
+          {
+          width:80px;
+          }
+
+          td.import2
+          {
+          text-align:right;
+          }
+
+          th.ximport
+          {
+          width:100px;
+          }
+
+          td.ximport
+          {
+          text-align:center;
+          }
+
+          th.ximport2
+          {
+          width:80px;
+          }
+
+          td.ximport2
+          {
+          text-align:center;
+          }
+
+          td.data
+          {
+          text-align:center;
+          }
+
+          .tx-xsmall {
+          font-size:x-small;
+          }
+
+          .tx-small {
+          font-size:small;
+          }
+
+          .import
+          {
+          text-align:right;
+          }
+
+		  table.tbNoBorder
+          {
+			  border-collapse: collapse;			
+			  margin-bottom: 5px;			  
+			  font-size:small;
+			  text-align:center;
+			  width:800px;
+          }
+		  
+        </style>
+   </head>
+   <body>
+      <div id="fattura-container">
+         <div id="fattura-elettronica" class="page">
+            <table id="tbHeader" class="tbHeader">
+               <tr>
+                  <td class="tdHead">
+                     <table class="tableHead">
+                        <tr>
+                           <td>
+                              <div class="headBorder"><label class="headerLabel">Cedente/prestatore (fornitore) </label><div class="headContent mt5">
+                                    
+                                    Identificativo fiscale ai fini IVA:
+                                    <span>IT02614430813</span></div>
+                                 <div class="headContent">
+                                    
+                                    Codice fiscale:
+                                    <span>TRNMNL78H53E974H</span></div>
+                                 <div class="headContent"></div>
+                                 <div class="headContent">
+                                    
+                                    Cognome nome:
+                                    
+                                    <span>TRANCHIDA </span><span>MANUELA</span></div>
+                                 <div class="headContent">
+                                    
+                                    Regime fiscale:
+                                    <span>RF19</span>
+                                    Regime forfettario
+                                    </div>
+                                 <div class="headContent">
+                                    
+                                    Indirizzo:
+                                    <span>VIA BAGLIO INGLESE WOODHOUSE 145</span></div>
+                                 <div class="headContent"><span>
+                                       
+                                       Comune:
+                                       <span>PETROSINO</span>
+                                       
+                                       Provincia:
+                                       <span>TP</span></span></div>
+                                 <div class="headContent"><span>
+                                       Cap:
+                                       <span>91020</span>
+                                       
+                                       Nazione:
+                                       <span>IT</span></span></div>
+                                 <div class="headContent">
+                                    
+                                    Telefono:
+                                    <span>3282651771</span></div>
+                                 <div class="headContent">
+                                    
+                                    Email:
+                                    <span>manuela.tranchida@gmail.com</span></div>
+                                 <div class="headContent"></div>
+                              </div>
+                           </td>
+                        </tr>
+                     </table>
+                  </td>
+                  <td class="tdHead">
+                     <table class="tableHead">
+                        <tr>
+                           <td>
+                              <div class="headBorder"><label class="headerLabel">Cessionario/committente (cliente) </label><div class="headContent mt5"></div>
+                                 <div class="headContent">
+                                    
+                                    Codice fiscale:
+                                    <span>80005720810</span></div>
+                                 <div class="headContent">
+                                    
+                                    Denominazione:
+                                    <span>Tribunale Ordinario di Trapani - Spese di Giustizia</span></div>
+                                 <div class="headContent"></div>
+                                 <div class="headContent">
+                                    
+                                    Indirizzo:
+                                    <span>Via XXX Gennaio snc</span></div>
+                                 <div class="headContent"><span>
+                                       
+                                       Comune:
+                                       <span>Trapani</span>
+                                       
+                                       Provincia:
+                                       <span>TP</span></span></div>
+                                 <div class="headContent"><span>
+                                       Cap:
+                                       <span>91100</span>
+                                       
+                                       Nazione:
+                                       <span>IT</span></span></div>
+                                 <div class="headContent"></div>
+                              </div>
+                           </td>
+                        </tr>
+                     </table>
+                  </td>
+               </tr>
+            </table>
+            <div style="height:10px"></div>
+            <table class="tbFoglio">
+               <thead>
+                  <tr>
+                     <th>Tipologia documento</th>
+                     <th class="perc">Art. 73</th>
+                     <th>Numero documento</th>
+                     <th class="data">Data documento</th>
+                     <th>Codice destinatario</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>TD01
+                        fattura
+                        </td>
+                     <td class="ritenuta"></td>
+                     <td class="textCenter">4/2020</td>
+                     <td class="data">12-10-2020</td>
+                     <td class="textCenter">9DX89V</td>
+                  </tr>
+               </tbody>
+            </table>
+            <div class="separa"></div>
+            <table class="tbFoglio">
+               <thead>
+                  <tr>
+                     <th>Causale</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Per Consulenza Tecnica d'Ufficio nel Contenzioso Civile di cui al R.G. 3001/2017 Tribunale
+                        di Trapani,  promosso da Lombardo Ludovico et alii. Decreto di liquidazione del Giudice
+                        Dott.ssa Galazzi Dani<br>ela del 11/03/2019 (n. cronol. 2483/2019). PAGAMENTO EFFETTUATO DALLA PARTE PROCESSUALE
+                        OBBLIGATA: LOMBARDO LUDOVICO ET ALII. E NON DALL'AMMINISTRAZIONE GIUDIZIARIA<br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <div class="separa"></div>
+            <table class="tbFoglio">
+               <thead>
+                  <tr>
+                     <th width="80px">Cod. articolo</th>
+                     <th>Descrizione</th>
+                     <th class="import2">Quantità</th>
+                     <th class="import2">Prezzo unitario</th>
+                     <th class="perc2">UM</th>
+                     <th class="perc">Sconto o magg.</th>
+                     <th class="perc2">%IVA</th>
+                     <th class="ximport">Prezzo totale</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td></td>
+                     <td>Onorario</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">2.060,41</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">2.060,41</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>Spese documentate
+                        (AC)
+                        </td>
+                     <td class="import2">1,00</td>
+                     <td class="import">5.821,92</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">5.821,92</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura n.1 del 17/06/2019</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-1.000,00</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-1.000,00</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura n.2 del 04/07/2019</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-500,00</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-500,00</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura n.1/A del 24/07/2019</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-1.650,00</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-1.650,00</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura .2/A del 08/08/2019</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-300,00</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-300,00</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura n.3/A del 17/09/2019</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-300,00</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-300,00</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura n. 4/A del 02/10/2019</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-300,00</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-300,00</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura n. 5/A del 03/10/2019</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-500,00</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-500,00</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura n.6/A del 06/11/2019</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-300,00</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-300,00</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura n.7/A del 07/12/2019</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-213,72</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-213,72</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura n.1/2020 del 09/01/2020</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-213,72</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-213,72</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>A detrarre Acconto - Fattura n.2/2020 del 19/06/2020</td>
+                     <td class="import2">1,00</td>
+                     <td class="import">-1.327,45</td>
+                     <td class="textCenter"></td>
+                     <td class="import"></td>
+                     <td class="import">N2</td>
+                     <td>
+                        <div class="import">-1.327,45</div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <div class="separa"></div>
+            <table class="tbFoglio">
+               <thead>
+                  <tr>
+                     <th class="title">Dati Cassa Previdenziale</th>
+                     <th>Imponibile</th>
+                     <th class="perc">%Contr.</th>
+                     <th class="perc">Ritenuta</th>
+                     <th class="perc">%IVA</th>
+                     <th>Importo</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><span>TC04</span>
+                        (Cassa Nazionale Previdenza e Assistenza
+                        Ingegneri e Architetti liberi profess.)
+                        </td>
+                     <td class="import">2.060,41</td>
+                     <td class="import">4,00</td>
+                     <td class="Ritenuta"></td>
+                     <td class="import">N2</td>
+                     <td class="import">82,42</td>
+                  </tr>
+               </tbody>
+            </table>
+            <div class="separa"></div>
+            <table class="tbTitolo">
+               <thead>
+                  <tr>
+                     <th>RIEPILOGHI IVA E TOTALI</th>
+                  </tr>
+               </thead>
+            </table>
+            <table class="tbFoglio">
+               <thead>
+                  <tr>
+                     <th colspan="3">esigibilità iva / riferimenti normativi</th>
+                     <th class="perc">%IVA</th>
+                     <th>Spese accessorie</th>
+                     <th class="perc">Arr.</th>
+                     <th colspan="2">Totale imponibile</th>
+                     <th colspan="2">Totale imposta</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td colspan="3"><span>Esigib. non dich. (si presume immediata)</span></td>
+                     <td class="import">N2</td>
+                     <td class="import">5.821,92</td>
+                     <td class="import">0,00</td>
+                     <td colspan="2" class="import">1.359,86</td>
+                     <td colspan="2" class="import">0</td>
+                  </tr>
+                  <tr>
+                     <th colspan="2">
+                        Imposta bollo
+                        </th>
+                     <th colspan="3">
+                        Sconto/Maggiorazione
+                        </th>
+                     <th class="perc">Arr.</th>
+                     <th colspan="4">
+                        Totale documento
+                        </th>
+                  </tr>
+                  <tr>
+                     <td colspan="2" class="import">2,00</td>
+                     <td colspan="3" class="import"></td>
+                     <td class="import">0,00</td>
+                     <td colspan="4" class="import">1.359,86</td>
+                  </tr>
+               </tbody>
+            </table>
+            <div class="separa"></div>
+            <table class="tbFoglio">
+               <thead>
+                  <tr>
+                     <th style="width:200px">Modalità pagamento</th>
+                     <th>Dettagli</th>
+                     <th style="width:180px">Scadenze</th>
+                     <th class="ximport">Importo</th>
+                  </tr>
+               </thead>
+               <tbody></tbody>
+            </table>
+            <div style="height:10px"></div>
+         </div>
+      </div>
+   </body>
+</html>
