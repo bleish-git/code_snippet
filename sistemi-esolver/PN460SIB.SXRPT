@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Report>
+	<Information Desc="Elenco componenti consumati per produzioen da inviare a SIB" DescExt="Dalla PN100EU completata e controllata in SIB vengono tirati fuori i materiali utilizzati per un ODP e, attraverso l&apos;incrocio con i DDV a SIB, le relative quantità, in modo da generare la PN460 per lo scarico dei secchi per produzione in Sibiliana." Context="4" Output="2" Version="3" AbilityTree="1" EnablePrintHeaders="1" Preview="1" BcVersion="30.6.2.0 - 15/05/2023 - 09:06:11"/>
+	<Query Name="Elenco componenti consumati per produzioen da invi" Version="16/07/2023 21:11:15" TopCount="-1" Nolock="1">
+		<Dictionary>
+			<DDTable Dfx="EDOCRLOTTI" Rtm="1" Version="09/03/2011 09:09:16" Dictionary="ES"/>
+			<DDTable Dfx="EDOCS" Rtm="1" Version="03/10/2021 20:00:19" Dictionary="ES"/>
+		</Dictionary>
+		<Tables>
+			<Table Dfx="EDOCRLOTTI" Dictionary="ES"/>
+			<Table Dfx="EDOCS" Dictionary="ES">
+				<ParentRelation Name="EDOCRLOTTI_EDOCS" ParentTableDfx="EDOCRLOTTI" JoinType="JOIN" RelationType="2" Dynamic="1">
+					<RelationField FieldName="IDD" ParentFieldName="IDD" Operator="="/>
+					<RelationField FieldName="CDO" ConstValueI="20" Operator="="/>
+					<RelationField FieldName="GDO" ConstValueC="DDV" Operator="="/>
+				</ParentRelation>
+			</Table>
+		</Tables>
+		<Fields>
+			<Field Pos="1" Alias="NomeReport" Tid="C" Lud="64" Cif="64" Label="Nome del file di definizione del report" Type="4" Code="81"/>
+			<Field Pos="2" Alias="DesReport" Tid="C" Lud="50" Cif="50" Label="Descrizione del report" Type="4" Code="82"/>
+			<Field Pos="3" Alias="NumPagina" Tid="D" Lud="5" Cif="5" Label="Numero di pagina" Type="4" Code="91"/>
+			<Field Pos="4" Alias="TotPagine" Tid="D" Lud="5" Cif="5" Label="Numero totale di pagine" Type="4" Code="92"/>
+			<Field Pos="5" Alias="DataStampa" Tid="A" Lud="10" Cif="-1" Label="Data di inizio stampa" Type="4" Code="93"/>
+			<Field Pos="6" Alias="OraStampa" Tid="C" Lud="5" Cif="5" Label="Ora di inizio stampa" Type="4" Code="94"/>
+			<Field Pos="7" Alias="CodOperatore" Tid="C" Lud="20" Cif="20" Label="Codice operatore" Type="4" Code="96"/>
+			<Field Pos="8" Alias="Gruppo" Tid="C" Lud="2" Cif="2" Label="Gruppo in elaborazione" Type="4" Code="97"/>
+			<Field Pos="9" Alias="DesGruppo" Tid="C" Lud="50" Cif="50" Label="Descrizione Gruppo" Type="4" Code="98"/>
+			<Field Pos="10" Alias="Stazione" Tid="C" Lud="2" Cif="2" Label="Stazione" Type="4" Code="99"/>
+			<Field Pos="11" Alias="PaginaNdiM" Tid="C" Lud="25" Cif="25" Label="Dicitura &apos;Pagina N di M&apos;" Type="4" Code="83"/>
+			<Field Pos="12" Alias="Logo" Tid="C" Lud="255" Cif="255" Label="Logo" Type="4" Code="85"/>
+			<Field Pos="13" Alias="CodProfilo" Tid="C" Lud="8" Cif="8" Label="Codice profilo" Type="4" Code="90"/>
+			<Field Pos="72" TableDfx="EDOCRLOTTI" Name="RPA" Alias="RifLottoAlfanum" Output="1" RelationPath="EDOCRLOTTI" Label="Riferimento Lotto: Alfanumerico" Code="101"/>
+			<Field Pos="73" TableDfx="EDOCRLOTTI" Name="QT" Alias="Quantita" Output="1" RelationPath="EDOCRLOTTI" Label="Quantita&apos;" Code="102"/>
+			<Field Pos="74" TableDfx="EDOCRLOTTI" Name="CART" Alias="CodArt" Output="1" RelationPath="EDOCRLOTTI" Label="Codice Articolo" Code="103"/>
+			<Field Pos="75" TableDfx="EDOCRLOTTI" Name="IDD" Alias="IdDocumento" Output="1" RelationPath="EDOCRLOTTI" Label="Identificatore Documento" Code="104"/>
+			<Field Pos="76" TableDfx="EDOCRLOTTI" Name="IDR" Alias="IdRigaDoc" Output="1" RelationPath="EDOCRLOTTI" Label="Identificatore Riga Documento" Code="105"/>
+			<Field Pos="77" TableDfx="EDOCS" Name="DRG" Alias="DataRegistrazione" Output="1" RelationPath="EDOCRLOTTI;EDOCRLOTTI_EDOCS" Label="Registrazione: Data" Code="106"/>
+			<Field Pos="78" TableDfx="EDOCS" Name="SNU" Alias="CodSerie" Output="1" RelationPath="EDOCRLOTTI;EDOCRLOTTI_EDOCS" Label="Registrazione: Serie Numerazione" Code="107"/>
+			<Field Pos="79" TableDfx="EDOCS" Name="NRG" Alias="NumRegistraz" Output="1" RelationPath="EDOCRLOTTI;EDOCRLOTTI_EDOCS" Label="Registrazione: Numero" Code="108"/>
+			<Field Pos="80" TableDfx="EDOCS" Name="RIF" Alias="Riferimento" Output="1" RelationPath="EDOCRLOTTI;EDOCRLOTTI_EDOCS" Label="Riferimento" Code="109"/>
+		</Fields>
+	</Query>
+	<Dictionary Name="PN460SIB" Descr="Elenco componenti consumati per produzioen da invi" Location="1">
+		<Sections>
+			<Section Name="RIGA" Descr="Riga di corpo"/>
+		</Sections>
+		<Class Pos="1" Descr="Variabili PN460SIB">
+			<Variable Pos="101" Code="101" Descr="RifLottoAlfanum" DescrShort="Riferimento Lotto: Alfanumerico" Section="C" Len="25" Notes="Campo: DocRigheRifLotti.RifLottoAlfanum Nome inter" DataType="C" DbField="RifLottoAlfanum"/>
+			<Variable Pos="102" Code="102" Descr="Quantita" DescrShort="Quantita&apos;" Section="C" EditType="2" Len="21" NumDecs="4" Notes="Campo: DocRigheRifLotti.Quantita Nome interno: EDO" DataType="D" DbField="Quantita"/>
+			<Variable Pos="103" Code="103" Descr="CodArt" DescrShort="Codice Articolo" Section="C" Len="25" Notes="Campo: DocRigheRifLotti.CodArt Nome interno: EDOCR" DataType="C" DbField="CodArt"/>
+			<Variable Pos="104" Code="104" Descr="IdDocumento" DescrShort="Identificatore Documento" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: DocRigheRifLotti.IdDocumento Nome interno:" DataType="L" DbField="IdDocumento"/>
+			<Variable Pos="105" Code="105" Descr="IdRigaDoc" DescrShort="Identificatore Riga Documento" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: DocRigheRifLotti.IdRigaDoc Nome interno: ED" DataType="L" DbField="IdRigaDoc"/>
+			<Variable Pos="106" Code="106" Descr="DataRegistrazione" DescrShort="Registrazione: Data" Section="C" EditType="4" Len="10" SignType="2" Zeros="1" Notes="Campo: DocElencoGen.DataRegistrazione Nome interno" DataType="A" DbField="DataRegistrazione"/>
+			<Variable Pos="107" Code="107" Descr="CodSerie" DescrShort="Registrazione: Serie Numerazione" Section="C" EditType="3" Len="14" Zeros="1" Notes="Campo: DocElencoGen.CodSerie Nome interno: EDOCS.S" DataType="L" DbField="CodSerie"/>
+			<Variable Pos="108" Code="108" Descr="NumRegistraz" DescrShort="Registrazione: Numero" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: DocElencoGen.NumRegistraz Nome interno: EDO" DataType="L" DbField="NumRegistraz"/>
+			<Variable Pos="109" Code="109" Descr="Riferimento" DescrShort="Riferimento" Section="C" Len="25" Notes="Campo: DocElencoGen.Riferimento Nome interno: EDOC" DataType="C" DbField="Riferimento"/>
+		</Class>
+		<Class Pos="3" Descr="Variabili Contesto Report">
+			<Variable Pos="81" Code="81" Descr="Nome del file di definizione del report" DescrShort="Nome Report" Section="T" Len="64" DataType="C" DbField="NomeReport"/>
+			<Variable Pos="82" Code="82" Descr="Descrizione del report" DescrShort="Desc. Report" Section="T" Len="50" DataType="C" DbField="DesReport"/>
+			<Variable Pos="91" Code="91" Descr="Numero di pagina" DescrShort="Pagina" Section="T" EditType="3" Len="5" SignType="2" DataType="N" DbField="NumPagina"/>
+			<Variable Pos="92" Code="92" Descr="Numero totale di pagine" DescrShort="Totale Pagine" Section="T" EditType="3" Len="5" SignType="2" DataType="N" DbField="TotPagine"/>
+			<Variable Pos="93" Code="93" Descr="Data di inizio stampa" DescrShort="Data" Section="T" EditType="4" Len="10" SignType="2" DataType="A" DbField="DataStampa"/>
+			<Variable Pos="94" Code="94" Descr="Ora di inizio stampa" DescrShort="Ora" Section="T" Len="5" DataType="C" DbField="OraStampa"/>
+			<Variable Pos="96" Code="96" Descr="Codice operatore" DescrShort="Operatore" Section="T" Len="20" DataType="C" DbField="CodOperatore"/>
+			<Variable Pos="97" Code="97" Descr="Gruppo in elaborazione" DescrShort="Gruppo" Section="T" Len="2" DataType="C" DbField="Gruppo"/>
+			<Variable Pos="98" Code="98" Descr="Descrizione gruppo" DescrShort="Descrizione gruppo" Section="T" Len="50" DataType="C" DbField="DesGruppo"/>
+			<Variable Pos="99" Code="99" Descr="Stazione" DescrShort="Stazione" Section="T" Len="2" DataType="C" DbField="Stazione"/>
+			<Variable Pos="83" Code="83" Descr="Dicitura &apos;Pagina N di M&apos;" DescrShort="PaginaNdiM" Section="T" Len="25" DataType="C" DbField="PaginaNdiM"/>
+			<Variable Pos="85" Code="85" Descr="Logo" DescrShort="Logo" Section="T" Len="255" DataType="C" DbField="Logo"/>
+			<Variable Pos="90" Code="90" Descr="Codice profilo" DescrShort="Profilo" Section="T" Len="8" DataType="C" DbField="CodProfilo"/>
+		</Class>
+	</Dictionary>
+	<GesProc/>
+	<Export Heading="0" Execute="0" Connection="1"/>
+	<SearchFilters/>
+	<MailingList/>
+	<FieldExts/>
+	<FieldsQuery>
+		<FieldQuery TableDfx="EDOCRLOTTI" TableTrk="DORL" Name="RPA" Alias="RifLottoAlfanum" Preview="1"/>
+		<FieldQuery TableDfx="EDOCRLOTTI" TableTrk="DORL" Name="QT" Alias="Quantita" Preview="1"/>
+		<FieldQuery TableDfx="EDOCRLOTTI" TableTrk="DORL" Name="CART" Alias="CodArt" Preview="1"/>
+		<FieldQuery TableDfx="EDOCRLOTTI" TableTrk="DORL" Name="IDD" Alias="IdDocumento" Preview="1"/>
+		<FieldQuery TableDfx="EDOCRLOTTI" TableTrk="DORL" Name="IDR" Alias="IdRigaDoc" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="DRG" Alias="DataRegistrazione" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="SNU" Alias="CodSerie" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="NRG" Alias="NumRegistraz" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="RIF" Alias="Riferimento" Preview="1"/>
+	</FieldsQuery>
+	<UserFields/>
+	<OverConditions/>
+	<CondExts/>
+	<Actions/>
+	<GroupExts/>
+	<Storage/>
+	<RepCorrels/>
+</Report>
+

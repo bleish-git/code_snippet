@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BC_DA_ANAGR_TAB>
+	<FILE>
+		<BCDBFILE ID="103016" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NOMD="Q_RATIO" DES="Determina il rapporto di scarico per le sole etich" TIP="L" NUMT="1" NUMC="10" PAGB="2048" CPRD="1" EXP="1" GRUP="1" VDAT="28072023" VORA="00:10:42"/>
+	</FILE>
+	<FIELD>
+		<BCDBFIELD ID="1612524" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NPR="1" NOMC="NRG" NOMD="NumRegistraz" DES="Registrazione: Numero" TID="L" LUD="4" CIF="7"/>
+		<BCDBFIELD ID="1612525" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NPR="2" NOMC="QT" NOMD="Quantita" DES="Quantita&apos;" TID="D" LUD="8" CIF="11" DEC="4"/>
+		<BCDBFIELD ID="1612526" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NPR="3" NOMC="ODP" NOMD="OdP" DES="OdP" TLOG="10" TID="L" LUD="4" CIF="7"/>
+		<BCDBFIELD ID="1612527" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NPR="4" NOMC="CART" NOMD="CodArt" DES="Codice Articolo" TID="C" LUD="25"/>
+		<BCDBFIELD ID="1612528" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NPR="5" NOMC="VALC14" NOMD="ValoreCampo14" DES="Valore Campo 14" TID="C" LUD="100"/>
+		<BCDBFIELD ID="1612529" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NPR="6" NOMC="VALC15" NOMD="ValoreCampo15" DES="Valore Campo 15" TID="C" LUD="100"/>
+		<BCDBFIELD ID="1612530" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NPR="7" NOMC="VALC17" NOMD="ValoreCampo17" DES="Valore Campo 17" TID="C" LUD="100"/>
+		<BCDBFIELD ID="1612531" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NPR="8" NOMC="QSCAR" NOMD="Qscar" DES="Qscar" TLOG="10" TID="D" LUD="8" CIF="10"/>
+		<BCDBFIELD ID="1612532" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NPR="9" NOMC="RATIO" NOMD="ratio" DES="Rapporto di scarico" TLOG="10" TID="D" LUD="8" CIF="10" DEC="4"/>
+		<BCDBFIELD ID="1612533" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NPR="10" NOMC="QSELEZIONE" NOMD="Qselezione" DES="Campo che determina la selezione" TLOG="10" TID="C" LUD="3" CIF="3"/>
+	</FIELD>
+	<EXTEN>
+		<BCDBEXTEN ID="525130" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" TDATO="1" EXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Report&gt;
+	&lt;Query Name=&quot;Determina il rapporto di scarico per le sole etich&quot; Version=&quot;28/07/2023 00:10:41&quot; TopCount=&quot;-1&quot; Nolock=&quot;1&quot;&gt;
+		&lt;Dictionary&gt;
+			&lt;DDTable Dfx=&quot;EDDAR&quot; Rtm=&quot;1&quot; Version=&quot;02/08/2022 13:50:02&quot; Dictionary=&quot;ES&quot;/&gt;
+			&lt;DDTable Dfx=&quot;EDOCS&quot; Rtm=&quot;1&quot; Version=&quot;03/10/2021 20:00:19&quot; Dictionary=&quot;ES&quot;/&gt;
+			&lt;DDTable Dfx=&quot;EDMIT&quot; Rtm=&quot;1&quot; Version=&quot;18/06/2014 13:43:44&quot; Dictionary=&quot;ES&quot;/&gt;
+			&lt;DDTable Dfx=&quot;EDMIR&quot; Rtm=&quot;1&quot; Version=&quot;02/08/2022 14:26:34&quot; Dictionary=&quot;ES&quot;/&gt;
+			&lt;DDTable Dfx=&quot;ECUTV&quot; Rtm=&quot;1&quot; Version=&quot;06/07/2021 15:28:48&quot; Dictionary=&quot;ES&quot;/&gt;
+		&lt;/Dictionary&gt;
+		&lt;Tables&gt;
+			&lt;Table Dfx=&quot;EDDAR&quot; Dictionary=&quot;ES&quot;/&gt;
+			&lt;Table Dfx=&quot;EDOCS&quot; Dictionary=&quot;ES&quot;&gt;
+				&lt;ParentRelation Name=&quot;EDDAR_EDOCS&quot; ParentTableDfx=&quot;EDDAR&quot; JoinType=&quot;JOIN&quot; RelationType=&quot;2&quot; Dynamic=&quot;1&quot;&gt;
+					&lt;RelationField FieldName=&quot;IDD&quot; ParentFieldName=&quot;IDD&quot; Operator=&quot;=&quot;/&gt;
+				&lt;/ParentRelation&gt;
+			&lt;/Table&gt;
+			&lt;Table Dfx=&quot;EDMIT&quot; Dictionary=&quot;ES&quot;&gt;
+				&lt;ParentRelation Name=&quot;EDDAR_EDMIT&quot; ParentTableDfx=&quot;EDDAR&quot; JoinType=&quot;JOIN&quot; RelationType=&quot;2&quot; Dynamic=&quot;1&quot;&gt;
+					&lt;RelationField FieldName=&quot;NRG&quot; Formula=&quot;{OdP}&quot; Operator=&quot;=&quot;/&gt;
+					&lt;RelationField FieldName=&quot;SNU&quot; ConstValueL=&quot;7&quot; Operator=&quot;=&quot;/&gt;
+				&lt;/ParentRelation&gt;
+			&lt;/Table&gt;
+			&lt;Table Id=&quot;1&quot; Dfx=&quot;EDMIR&quot; Dictionary=&quot;ES&quot;&gt;
+				&lt;ParentRelation Name=&quot;EDMIT_EDMIR&quot; ParentTableDfx=&quot;EDMIT&quot; JoinType=&quot;JOIN&quot; RelationType=&quot;2&quot; Dynamic=&quot;1&quot;&gt;
+					&lt;RelationField FieldName=&quot;IDD&quot; ParentFieldName=&quot;IDD&quot; Operator=&quot;=&quot;/&gt;
+				&lt;/ParentRelation&gt;
+			&lt;/Table&gt;
+			&lt;Table Id=&quot;1&quot; Dfx=&quot;ECUTV&quot; Dictionary=&quot;ES&quot;&gt;
+				&lt;ParentRelation Name=&quot;EDMIR_ECUTV&quot; ParentTableId=&quot;1&quot; ParentTableDfx=&quot;EDMIR&quot; JoinType=&quot;RIGHT&quot; RelationType=&quot;2&quot; Dynamic=&quot;1&quot;&gt;
+					&lt;RelationField FieldName=&quot;IDD&quot; ParentFieldName=&quot;IDD&quot; Operator=&quot;=&quot;/&gt;
+					&lt;RelationField FieldName=&quot;IDR&quot; ParentFieldName=&quot;IDR&quot; Operator=&quot;=&quot;/&gt;
+					&lt;RelationField ParentFieldName=&quot;NPOS&quot; Operator=&quot;=&quot;/&gt;
+				&lt;/ParentRelation&gt;
+			&lt;/Table&gt;
+		&lt;/Tables&gt;
+		&lt;Fields&gt;
+			&lt;Field Pos=&quot;1&quot; TableDfx=&quot;EDOCS&quot; Name=&quot;NRG&quot; Alias=&quot;NumRegistraz&quot; Output=&quot;1&quot; RelationPath=&quot;EDDAR;EDDAR_EDOCS&quot; Label=&quot;Registrazione: Numero&quot; Code=&quot;108&quot;/&gt;
+			&lt;Field Pos=&quot;2&quot; TableDfx=&quot;EDDAR&quot; Name=&quot;QT&quot; Alias=&quot;Quantita&quot; Output=&quot;1&quot; RelationPath=&quot;EDDAR&quot; Label=&quot;Quantita&amp;apos;&quot; Code=&quot;102&quot;/&gt;
+			&lt;Field Pos=&quot;3&quot; TableDfx=&quot;EDDAR&quot; Name=&quot;NOTAINT&quot; Alias=&quot;NotaInterna&quot; RelationPath=&quot;EDDAR&quot; Label=&quot;Nota Interna&quot;/&gt;
+			&lt;Field Pos=&quot;5&quot; TableDfx=&quot;EDMIR&quot; TableId=&quot;1&quot; Name=&quot;CART&quot; Alias=&quot;CodArt&quot; Output=&quot;1&quot; RelationPath=&quot;EDDAR;EDDAR_EDMIT;EDMIT_EDMIR&quot; Label=&quot;Codice Articolo&quot; Code=&quot;110&quot;/&gt;
+			&lt;Field Pos=&quot;6&quot; TableDfx=&quot;ECUTV&quot; TableId=&quot;1&quot; Name=&quot;VALC14&quot; Alias=&quot;ValoreCampo14&quot; Output=&quot;1&quot; RelationPath=&quot;EDDAR;EDDAR_EDMIT;EDMIT_EDMIR;EDMIR_ECUTV&quot; Label=&quot;Valore Campo 14&quot; Code=&quot;105&quot;/&gt;
+			&lt;Field Pos=&quot;7&quot; TableDfx=&quot;ECUTV&quot; TableId=&quot;1&quot; Name=&quot;VALC15&quot; Alias=&quot;ValoreCampo15&quot; Output=&quot;1&quot; RelationPath=&quot;EDDAR;EDDAR_EDMIT;EDMIT_EDMIR;EDMIR_ECUTV&quot; Label=&quot;Valore Campo 15&quot; Code=&quot;106&quot;/&gt;
+			&lt;Field Pos=&quot;8&quot; TableDfx=&quot;ECUTV&quot; TableId=&quot;1&quot; Name=&quot;VALC17&quot; Alias=&quot;ValoreCampo17&quot; Output=&quot;1&quot; RelationPath=&quot;EDDAR;EDDAR_EDMIT;EDMIT_EDMIR;EDMIR_ECUTV&quot; Label=&quot;Valore Campo 17&quot; Code=&quot;107&quot;/&gt;
+			&lt;Field Pos=&quot;12&quot; Alias=&quot;CodArtMatDa&quot; Label=&quot;Codice Articolo Da&quot; Type=&quot;1&quot; IdFilterOrigin=&quot;1&quot; Code=&quot;901&quot;/&gt;
+			&lt;Field Pos=&quot;13&quot; Alias=&quot;CodArtMatA&quot; Label=&quot;Codice Articolo A&quot; Type=&quot;2&quot; IdFilterOrigin=&quot;1&quot; Code=&quot;902&quot;/&gt;
+			&lt;Field Pos=&quot;14&quot; Alias=&quot;NumPosComponenteDa&quot; Label=&quot;Numero Posizione Componente Da&quot; Type=&quot;1&quot; IdFilterOrigin=&quot;2&quot; Code=&quot;903&quot;/&gt;
+			&lt;Field Pos=&quot;15&quot; Alias=&quot;NumPosComponenteA&quot; Label=&quot;Numero Posizione Componente A&quot; Type=&quot;2&quot; IdFilterOrigin=&quot;2&quot; Code=&quot;904&quot;/&gt;
+			&lt;Field Pos=&quot;4&quot; Alias=&quot;OdP&quot; Output=&quot;1&quot; Formula=&quot;{ºVAL}({EDDAR.NOTAINT})&quot; Format=&quot;FMT_OdP4&quot; Tid=&quot;D&quot; Lud=&quot;7&quot; Cif=&quot;7&quot; Label=&quot;OdP&quot; Code=&quot;104&quot;/&gt;
+			&lt;Field Pos=&quot;9&quot; Alias=&quot;Qscar&quot; Output=&quot;1&quot; Formula=&quot;{ºVAL}({ECUTV@1.VALC14})+{ºVAL}({ECUTV@1.VALC15})+{ºVAL}({ECUTV@1.VALC17})&quot; Format=&quot;FMT_Qscar9&quot; Tid=&quot;D&quot; Lud=&quot;10&quot; Cif=&quot;10&quot; Label=&quot;Qscar&quot; Code=&quot;109&quot;/&gt;
+			&lt;Field Pos=&quot;10&quot; Alias=&quot;ratio&quot; Output=&quot;1&quot; Formula=&quot;{EDDAR.QT}/{Qscar}&quot; Format=&quot;FMT_ratio10&quot; Tid=&quot;D&quot; Lud=&quot;11&quot; Cif=&quot;10&quot; Dec=&quot;4&quot; Label=&quot;Rapporto di scarico&quot; Code=&quot;111&quot;/&gt;
+			&lt;Field Pos=&quot;11&quot; Alias=&quot;Qselezione&quot; Output=&quot;1&quot; Formula=&quot;&amp;apos;QQQQQ&amp;apos;&quot; Condition=&quot;{EDMIR@1.CART}=&amp;apos;ZET&amp;apos;&quot; Format=&quot;FMT_Qselezione11&quot; Tid=&quot;C&quot; Lud=&quot;3&quot; Cif=&quot;3&quot; Label=&quot;Campo che determina la selezione&quot; Code=&quot;112&quot;&gt;
+				&lt;CondExpression Formula=&quot;&amp;apos;&amp;apos;&quot; Condition=&quot;*&quot;/&gt;
+			&lt;/Field&gt;
+		&lt;/Fields&gt;
+		&lt;Filters&gt;
+			&lt;CellFilter Pos=&quot;1&quot; TableDfx=&quot;EDMIR&quot; TableId=&quot;1&quot; Name=&quot;CART&quot; Alias=&quot;CodArt&quot; Tid=&quot;C&quot; Lud=&quot;25&quot; Label=&quot;Codice Articolo&quot; Condition=&quot;8&quot; Runtime=&quot;1&quot; RtmCondition=&quot;1&quot; Operator=&quot;AND&quot; IdFilter=&quot;1&quot; Value1C=&quot;ZET&quot; Value2C=&quot;zzzzzzzzzzzzzzzzzzzzzzzzz&quot;/&gt;
+		&lt;/Filters&gt;
+	&lt;/Query&gt;
+	&lt;Information Desc=&quot;Determina il rapporto di scarico per le sole etichiette fronte&quot; Context=&quot;4&quot; Output=&quot;5&quot; Version=&quot;2&quot; AbilityTree=&quot;1&quot; Preview=&quot;1&quot;/&gt;
+	&lt;FieldsQuery&gt;
+		&lt;FieldQuery TableDfx=&quot;EDDAR&quot; TableTrk=&quot;DAR&quot; Name=&quot;QT&quot; Alias=&quot;Quantita&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EDDAR&quot; TableTrk=&quot;DAR&quot; Name=&quot;NOTAINT&quot; Alias=&quot;NotaInterna&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;*QUERY*&quot; Name=&quot;NotaI&quot; Alias=&quot;NotaI&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EDMIR&quot; TableTrk=&quot;DMR&quot; Name=&quot;CART&quot; Alias=&quot;CodArtMat&quot; Preview=&quot;1&quot; QueryName=&quot;CARTMAT&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;ECUTV&quot; TableTrk=&quot;CUV&quot; Name=&quot;VALC14&quot; Alias=&quot;ValoreCampo14&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;ECUTV&quot; TableTrk=&quot;CUV&quot; Name=&quot;VALC15&quot; Alias=&quot;ValoreCampo15&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;ECUTV&quot; TableTrk=&quot;CUV&quot; Name=&quot;VALC17&quot; Alias=&quot;ValoreCampo17&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EDMIR&quot; TableTrk=&quot;DMR&quot; Name=&quot;NPOS&quot; Alias=&quot;NumPosComponente&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;*QUERY*&quot; Name=&quot;CampiUtenteTabVExist&quot; Alias=&quot;CampiUtenteTabVExist&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;*QUERY*&quot; Name=&quot;OdP&quot; Alias=&quot;OdP&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;ECUTV&quot; TableId=&quot;1&quot; TableTrk=&quot;CUV&quot; Name=&quot;VALC14&quot; Alias=&quot;ValoreCampo14&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;ECUTV&quot; TableId=&quot;1&quot; TableTrk=&quot;CUV&quot; Name=&quot;VALC15&quot; Alias=&quot;ValoreCampo15&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;ECUTV&quot; TableId=&quot;1&quot; TableTrk=&quot;CUV&quot; Name=&quot;VALC17&quot; Alias=&quot;ValoreCampo17&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EDOCS&quot; TableTrk=&quot;DO&quot; Name=&quot;NRG&quot; Alias=&quot;NumRegistraz&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;*QUERY*&quot; Name=&quot;Qscar&quot; Alias=&quot;Qscar&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EDMIR&quot; TableId=&quot;1&quot; TableTrk=&quot;DMR&quot; Name=&quot;CART&quot; Alias=&quot;CodArt&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;*QUERY*&quot; Name=&quot;ratio&quot; Alias=&quot;ratio&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;*QUERY*&quot; Name=&quot;Qselezione&quot; Alias=&quot;Qselezione&quot; Preview=&quot;1&quot;/&gt;
+	&lt;/FieldsQuery&gt;
+&lt;/Report&gt;"/>
+		<BCDBEXTEN ID="525131" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" TDATO="5"/>
+		<BCDBEXTEN ID="525126" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NOMC="ODP" TDATO="2" EXT=":{ºVAL}({EDDAR.NOTAINT})"/>
+		<BCDBEXTEN ID="525127" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NOMC="QSCAR" TDATO="2" EXT=":{ºVAL}({ECUTV@1.VALC14})+{ºVAL}({ECUTV@1.VALC15})+{ºVAL}({ECUTV@1.VALC17})"/>
+		<BCDBEXTEN ID="525129" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NOMC="QSELEZIONE" TDATO="2" EXT="{EDMIR@1.CART}=&apos;ZET&apos;:&apos;QQQQQ&apos;;:&apos;&apos;"/>
+		<BCDBEXTEN ID="525128" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="Q_RATIO" NOMC="RATIO" TDATO="2" EXT=":{EDDAR.QT}/{Qscar}"/>
+	</EXTEN>
+</BC_DA_ANAGR_TAB>
+

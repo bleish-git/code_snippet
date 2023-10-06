@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Report>
+	<Information Desc="Report per riga OdP con elenco materiali" DescExt="File base per lo scambio di informazioni intercompany in fase di trasferimento materiali in produzione, ritorno dei secchi e successiva consuntivazione in dettaglio." Context="4" Output="2" Version="3" AbilityTree="1" CustomSearch="1" LocationMailingList="1" Preview="1" BcVersion="30.6.2.0 - 15/05/2023 - 09:06:11" Classification="7"/>
+	<Dictionary Name="PROVA1" Descr="Report per riga OdP con elenco materiali" Location="1">
+		<Sections>
+			<Section Name="INT 1" Descr="Intestazione riga sezione 1"/>
+			<Section Name="RIGA" Descr="Riga di corpo"/>
+		</Sections>
+		<Class Pos="1" Descr="Variabili PROVA1">
+			<Variable Pos="118" Code="118" Descr="Cost1" DescrShort="RIG/TES" Section="C" Len="3" Notes="Campo utente: Cost1" DataType="C" DbField="Cost1"/>
+			<Variable Pos="101" Code="101" Descr="IdDocumento" DescrShort="Identificatore Documento" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: OrdProduzTestata.IdDocumento Nome interno:" DataType="L" DbField="IdDocumento"/>
+			<Variable Pos="102" Code="102" Descr="DataInizio" DescrShort="Pianificazione Produzione: Data Inizio" Section="C" EditType="4" Len="10" SignType="2" Zeros="1" Notes="Campo: OrdProduzTestata.DataInizio Nome interno: E" DataType="A" DbField="DataInizio"/>
+			<Variable Pos="103" Code="103" Descr="IdRiga" DescrShort="Identificatore Riga" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: OrdProduzRighe.IdRiga Nome interno: EORPROR" DataType="L" DbField="IdRiga"/>
+			<Variable Pos="104" Code="104" Descr="NumProgrRiga" DescrShort="Numero Progressivo Riga" Section="C" EditType="2" Len="11" NumDecs="2" Notes="Campo: OrdProduzRighe.NumProgrRiga Nome interno: E" DataType="S" DbField="NumProgrRiga"/>
+			<Variable Pos="105" Code="105" Descr="NumPosComponente" DescrShort="Numero Posizione Componente" Section="C" EditType="2" Len="11" NumDecs="2" Notes="Campo: OrdProduzRighe.NumPosComponente Nome intern" DataType="S" DbField="NumPosComponente"/>
+			<Variable Pos="106" Code="106" Descr="CodArt" DescrShort="Codice Articolo" Section="C" Len="25" Notes="Campo: OrdProduzRighe.CodArt Nome interno: EORPROR" DataType="C" DbField="CodArt"/>
+			<Variable Pos="119" Code="119" Descr="Quantita" DescrShort="Quantita&apos;" Section="C" EditType="2" Len="21" NumDecs="4" Notes="Campo: OrdProduzRighe.Quantita Nome interno: EORPR" DataType="D" DbField="Quantita"/>
+			<Variable Pos="120" Code="120" Descr="TipoRigaUscita" DescrShort="Tipo Riga mag-&gt;PROD" Section="C" Len="2" Notes="Campo utente: TipoRigaUscita" DataType="C" DbField="TipoRigaUscita"/>
+			<Variable Pos="108" Code="108" Descr="Des" DescrShort="Descrizione Riga" Section="C" Len="200" Notes="Campo: OrdProduzRighe.Des Nome interno: EORPROR.DE" DataType="C" DbField="Des"/>
+			<Variable Pos="121" Code="121" Descr="RifLottoAlfanum" DescrShort="Riferimento Lotto: Alfanumerico" Section="C" Len="25" Notes="Campo: DocRigheRifLotti.RifLottoAlfanum Nome inter" DataType="C" DbField="RifLottoAlfanum"/>
+			<Variable Pos="109" Code="109" Descr="CodArtComposto" DescrShort="Codice Articolo Composto" Section="C" Len="25" Notes="Campo: OrdProduzRighe.CodArtComposto Nome interno:" DataType="C" DbField="CodArtComposto"/>
+			<Variable Pos="112" Code="112" Descr="GruppoDoc" DescrShort="Gruppo Documento" Section="C" Len="3" Notes="Campo: DocElencoGen.GruppoDoc Nome interno: EDOCS." DataType="C" DbField="GruppoDoc"/>
+			<Variable Pos="113" Code="113" Descr="ClasseDoc" DescrShort="Classe Documento" Section="C" EditType="3" Len="6" Zeros="1" Notes="Campo: DocElencoGen.ClasseDoc Nome interno: EDOCS." DataType="I" DbField="ClasseDoc"/>
+			<Variable Pos="127" Code="127" Descr="DataTermine" DescrShort="Pianificazione Produzione: Data Termine" Section="C" EditType="4" Len="10" SignType="2" Zeros="1" Notes="Campo: OrdProduzTestata.DataTermine Nome interno:" DataType="A" DbField="DataTermine"/>
+			<Variable Pos="114" Code="114" Descr="PeriodoRifNumeraz" DescrShort="Registrazione: Periodo Riferimento Nu" Section="C" EditType="2" Len="11" NumDecs="2" Notes="Campo: DocElencoGen.PeriodoRifNumeraz Nome interno" DataType="S" DbField="PeriodoRifNumeraz"/>
+			<Variable Pos="115" Code="115" Descr="CodSerie" DescrShort="Registrazione: Serie Numerazione" Section="C" EditType="3" Len="14" Zeros="1" Notes="Campo: DocElencoGen.CodSerie Nome interno: EDOCS.S" DataType="L" DbField="CodSerie"/>
+			<Variable Pos="116" Code="116" Descr="NumRegistraz" DescrShort="Registrazione: Numero" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: DocElencoGen.NumRegistraz Nome interno: EDO" DataType="L" DbField="NumRegistraz"/>
+			<Variable Pos="131" Code="131" Descr="RiferimentoRiga" DescrShort="Riferimento Riga" Section="C" Len="25" Notes="Campo: OrdProduzRighe.RiferimentoRiga Nome interno" DataType="C" DbField="RiferimentoRiga"/>
+			<Variable Pos="122" Code="122" Descr="NumRegEstesa" DescrShort="Numero registrazione estesa con riga composto" Section="C" EditType="2" Len="20" Zeros="1" Notes="Campo utente: NumRegEstesa" DataType="D" DbField="NumRegEstesa"/>
+			<Variable Pos="123" Code="123" Descr="RifLotto" DescrShort="Riferimento lotto predefinito se assente" Section="C" Len="25" Notes="Campo utente: RifLotto" DataType="C" DbField="RifLotto"/>
+			<Variable Pos="124" Code="124" Descr="DesCompostoEstesa" DescrShort="Descrizione estesa del composto" Section="C" Len="50" Notes="Campo utente: DesCompostoEstesa" DataType="C" DbField="DesCompostoEstesa"/>
+			<Variable Pos="125" Code="125" Descr="CodArtComp" DescrShort="Cod Art comp, escluso vino,fasc,colla,nastro" Section="C" Len="15" Notes="Campo utente: CodArtComp" DataType="C" DbField="CodArtComp"/>
+			<Variable Pos="126" Code="126" Descr="IdDocEstesa" DescrShort="Identificativo documento con progressivo riga" Section="C" EditType="2" Len="20" Zeros="1" Notes="Campo utente: IdDocEstesa" DataType="D" DbField="IdDocEstesa"/>
+			<Variable Pos="128" Code="128" Descr="DesEstesa" DescrShort="Descrizione Estesa" Section="C" EditType="12" Notes="Campo: OrdProduzRighe.DesEstesa Nome interno: EORP" DataType="B" DbField="DesEstesa"/>
+			<Variable Pos="129" Code="129" Descr="DesArt" DescrShort="Descrizione Articolo" Section="C" Len="50" Notes="Campo: ArtAnagrafica.DesArt Nome interno: EARAN.DE" DataType="C" DbField="DesArt"/>
+			<Variable Pos="130" Code="130" Descr="FirmaUltVarData" DescrShort="Data Ultima Variazione" Section="C" EditType="4" Len="10" SignType="2" Zeros="1" Notes="Campo: DocElencoGen.FirmaUltVarData Nome interno:" DataType="A" DbField="FirmaUltVarData"/>
+		</Class>
+		<Class Pos="3" Descr="Variabili Contesto Report">
+			<Variable Pos="81" Code="81" Descr="Nome del file di definizione del report" DescrShort="Nome Report" Section="T" Len="64" DataType="C" DbField="NomeReport"/>
+			<Variable Pos="82" Code="82" Descr="Descrizione del report" DescrShort="Desc. Report" Section="T" Len="50" DataType="C" DbField="DesReport"/>
+			<Variable Pos="91" Code="91" Descr="Numero di pagina" DescrShort="Pagina" Section="T" EditType="3" Len="5" SignType="2" DataType="N" DbField="NumPagina"/>
+			<Variable Pos="92" Code="92" Descr="Numero totale di pagine" DescrShort="Totale Pagine" Section="T" EditType="3" Len="5" SignType="2" DataType="N" DbField="TotPagine"/>
+			<Variable Pos="93" Code="93" Descr="Data di inizio stampa" DescrShort="Data" Section="T" EditType="4" Len="10" SignType="2" DataType="A" DbField="DataStampa"/>
+			<Variable Pos="94" Code="94" Descr="Ora di inizio stampa" DescrShort="Ora" Section="T" Len="5" DataType="C" DbField="OraStampa"/>
+			<Variable Pos="96" Code="96" Descr="Codice operatore" DescrShort="Operatore" Section="T" Len="20" DataType="C" DbField="CodOperatore"/>
+			<Variable Pos="97" Code="97" Descr="Gruppo in elaborazione" DescrShort="Gruppo" Section="T" Len="2" DataType="C" DbField="Gruppo"/>
+			<Variable Pos="98" Code="98" Descr="Descrizione gruppo" DescrShort="Descrizione gruppo" Section="T" Len="50" DataType="C" DbField="DesGruppo"/>
+			<Variable Pos="99" Code="99" Descr="Stazione" DescrShort="Stazione" Section="T" Len="2" DataType="C" DbField="Stazione"/>
+			<Variable Pos="83" Code="83" Descr="Dicitura &apos;Pagina N di M&apos;" DescrShort="PaginaNdiM" Section="T" Len="25" DataType="C" DbField="PaginaNdiM"/>
+			<Variable Pos="85" Code="85" Descr="Logo" DescrShort="Logo" Section="T" Len="255" DataType="C" DbField="Logo"/>
+			<Variable Pos="90" Code="90" Descr="Codice profilo" DescrShort="Profilo" Section="T" Len="8" DataType="C" DbField="CodProfilo"/>
+		</Class>
+		<Class Pos="4" Descr="Variabili Opzioni del Report">
+			<Variable Pos="901" Code="901" Descr="Pianificazione Produzione: Data Inizio (Da)" DescrShort="Pianificazione Produzione: Data Inizio (Da)" Section="T" EditType="4" Len="10" SignType="2" Zeros="1" DataType="A" DbField="DataInizioDa"/>
+			<Variable Pos="902" Code="902" Descr="Pianificazione Produzione: Data Inizio (a)" DescrShort="Pianificazione Produzione: Data Inizio (a)" Section="T" EditType="4" Len="10" SignType="2" Zeros="1" DataType="A" DbField="DataInizioA"/>
+			<Variable Pos="909" Code="909" Descr="Identificatore Documento (Da)" DescrShort="Identificatore Documento (Da)" Section="T" EditType="2" Len="14" Zeros="1" DataType="L" DbField="IdDocumentoDa"/>
+			<Variable Pos="910" Code="910" Descr="Identificatore Documento (a)" DescrShort="Identificatore Documento (a)" Section="T" EditType="2" Len="14" Zeros="1" DataType="L" DbField="IdDocumentoA"/>
+			<Variable Pos="911" Code="911" Descr="Numero registrazione estesa con riga composto (Da)" DescrShort="Numero registrazione estesa con riga composto (Da)" Section="T" EditType="2" Len="20" Zeros="1" DataType="D" DbField="NumRegEstesaDa"/>
+			<Variable Pos="912" Code="912" Descr="Numero registrazione estesa con riga composto (a)" DescrShort="Numero registrazione estesa con riga composto (a)" Section="T" EditType="2" Len="20" Zeros="1" DataType="D" DbField="NumRegEstesaA"/>
+		</Class>
+	</Dictionary>
+	<Query Name="Report per riga OdP con elenco materiali" Version="04/10/2023 20:42:51" OrderCount="1" TopCount="-1" Nolock="1">
+		<Dictionary>
+			<DDTable Dfx="EORPROT" Rtm="1" Version="09/07/2012 08:51:53" Dictionary="ES"/>
+			<DDTable Dfx="EORPROR" Rtm="1" Version="02/08/2022 14:19:57" Dictionary="ES"/>
+			<DDTable Dfx="EARAN" Rtm="1" Version="11/10/2022 17:39:53" Dictionary="ES"/>
+			<DDTable Dfx="EDOCS" Rtm="1" Version="03/10/2021 20:00:19" Dictionary="ES"/>
+			<DDTable Dfx="EDOCRLOTTI" Rtm="1" Version="09/03/2011 09:09:16" Dictionary="ES"/>
+			<DDTable Dfx="PROVA2" Rtm="1" Version="04/10/2023 10:39:37" Dictionary="TAB_ESTERNE"/>
+		</Dictionary>
+		<Tables>
+			<Table Dfx="EORPROT" Dictionary="ES"/>
+			<Table Dfx="EORPROR" Dictionary="ES">
+				<ParentRelation Name="EORPROR_EORPROT" ParentTableDfx="EORPROT" JoinType="LEFT" RelationType="3">
+					<RelationField FieldName="IDD" ParentFieldName="IDD"/>
+				</ParentRelation>
+			</Table>
+			<Table Dfx="EARAN" Dictionary="ES">
+				<ParentRelation Name="EORPROR_EARAN_CART" ParentTableDfx="EORPROR" JoinType="LEFT" RelationType="2">
+					<RelationField FieldName="CART" ParentFieldName="CARTC"/>
+				</ParentRelation>
+			</Table>
+			<Table Dfx="EDOCS" Dictionary="ES">
+				<ParentRelation Name="EORPROT_EDOCS" ParentTableDfx="EORPROT" JoinType="LEFT" RelationType="2">
+					<RelationField FieldName="IDD" ParentFieldName="IDD"/>
+				</ParentRelation>
+			</Table>
+			<Table Dfx="EDOCRLOTTI" Dictionary="ES">
+				<ParentRelation Name="EDOCRLOTTI_EORPROR" ParentTableDfx="EORPROR" JoinType="LEFT" RelationType="3">
+					<RelationField FieldName="IDD" ParentFieldName="IDD"/>
+					<RelationField FieldName="IDR" ParentFieldName="IDR"/>
+				</ParentRelation>
+			</Table>
+			<Table Id="2" Dfx="PROVA2" Dictionary="TAB_ESTERNE">
+				<ParentRelation Name="EORPROR_PROVA2" ParentTableDfx="EORPROR" JoinType="JOIN" RelationType="2" Dynamic="1">
+					<RelationField FieldName="NUMREGESTESA" Formula="{IdDocEstesa}" Operator="="/>
+				</ParentRelation>
+			</Table>
+		</Tables>
+		<Fields>
+			<Field Pos="2" TableDfx="EORPROT" Name="IDD" Alias="IdDocumento" Output="1" RelationPath="EORPROT" Label="Identificatore Documento" Code="101"/>
+			<Field Pos="3" TableDfx="EORPROT" Name="DIN" Alias="DataInizio" Output="1" RelationPath="EORPROT" Label="Pianificazione Produzione: Data Inizio" Code="102"/>
+			<Field Pos="4" TableDfx="EORPROR" Name="IDR" Alias="IdRiga" Output="1" RelationPath="EORPROT;EORPROR_EORPROT" Label="Identificatore Riga" Code="103"/>
+			<Field Pos="5" TableDfx="EORPROR" Name="NPR" Alias="NumProgrRiga" Output="1" RelationPath="EORPROT;EORPROR_EORPROT" Label="Numero Progressivo Riga" Code="104"/>
+			<Field Pos="6" TableDfx="EORPROR" Name="NPOS" Alias="NumPosComponente" Output="1" RelationPath="EORPROT;EORPROR_EORPROT" Label="Numero Posizione Componente" Code="105"/>
+			<Field Pos="7" TableDfx="EORPROR" Name="CART" Alias="CodArt" Output="1" RelationPath="EORPROT;EORPROR_EORPROT" Label="Codice Articolo" Code="106"/>
+			<Field Pos="8" TableDfx="EORPROR" Name="QT" Alias="Quantita" Output="1" RelationPath="EORPROT;EORPROR_EORPROT" Label="Quantita&apos;" Code="119"/>
+			<Field Pos="10" TableDfx="EORPROR" Name="DES" Alias="Des" Output="1" RelationPath="EORPROT;EORPROR_EORPROT" Label="Descrizione Riga" Code="108"/>
+			<Field Pos="11" TableDfx="EDOCRLOTTI" Name="RPA" Alias="RifLottoAlfanum" Output="1" RelationPath="EORPROT;EORPROR_EORPROT;EDOCRLOTTI_EORPROR" Label="Riferimento Lotto: Alfanumerico" Code="121"/>
+			<Field Pos="12" TableDfx="EORPROR" Name="CARTC" Alias="CodArtComposto" Output="1" RelationPath="EORPROT;EORPROR_EORPROT" Label="Codice Articolo Composto" Code="109"/>
+			<Field Pos="13" TableDfx="EDOCS" Name="GDO" Alias="GruppoDoc" Output="1" RelationPath="EORPROT;EORPROT_EDOCS" Label="Gruppo Documento" Code="112"/>
+			<Field Pos="14" TableDfx="EDOCS" Name="CDO" Alias="ClasseDoc" Output="1" RelationPath="EORPROT;EORPROT_EDOCS" Label="Classe Documento" Code="113"/>
+			<Field Pos="15" TableDfx="EORPROT" Name="DCO" Alias="DataTermine" Output="1" RelationPath="EORPROT" Label="Pianificazione Produzione: Data Termine" Code="127"/>
+			<Field Pos="16" TableDfx="EDOCS" Name="PNU" Alias="PeriodoRifNumeraz" Output="1" RelationPath="EORPROT;EORPROT_EDOCS" Label="Registrazione: Periodo Riferimento Nu" Code="114"/>
+			<Field Pos="17" TableDfx="EDOCS" Name="SNU" Alias="CodSerie" Output="1" RelationPath="EORPROT;EORPROT_EDOCS" Label="Registrazione: Serie Numerazione" Code="115"/>
+			<Field Pos="18" TableDfx="EDOCS" Name="NRG" Alias="NumRegistraz" Output="1" RelationPath="EORPROT;EORPROT_EDOCS" Label="Registrazione: Numero" Code="116"/>
+			<Field Pos="19" TableDfx="EORPROR" Name="RIFRIGA" Alias="RiferimentoRiga" Output="1" RelationPath="EORPROT;EORPROR_EORPROT" Label="Riferimento Riga" Code="131"/>
+			<Field Pos="25" TableDfx="EORPROR" Name="TESTO" Alias="DesEstesa" Output="1" RelationPath="EORPROT;EORPROR_EORPROT" Label="Descrizione Estesa" Code="128"/>
+			<Field Pos="26" TableDfx="EARAN" Name="DES" Alias="DesArt" Output="1" RelationPath="EORPROT;EORPROR_EORPROT;EORPROR_EARAN_CART" Label="Descrizione Articolo" Code="129"/>
+			<Field Pos="27" TableDfx="EDOCS" Name="VDAT" Alias="FirmaUltVarData" Output="1" RelationPath="EORPROT;EORPROT_EDOCS" Label="Data Ultima Variazione" Code="130"/>
+			<Field Pos="33" Alias="NomeReport" Tid="C" Lud="64" Cif="64" Label="Nome del file di definizione del report" Type="4" Code="81"/>
+			<Field Pos="34" Alias="DesReport" Tid="C" Lud="50" Cif="50" Label="Descrizione del report" Type="4" Code="82"/>
+			<Field Pos="35" Alias="NumPagina" Tid="D" Lud="5" Cif="5" Label="Numero di pagina" Type="4" Code="91"/>
+			<Field Pos="36" Alias="TotPagine" Tid="D" Lud="5" Cif="5" Label="Numero totale di pagine" Type="4" Code="92"/>
+			<Field Pos="37" Alias="DataStampa" Tid="A" Lud="10" Cif="-1" Label="Data di inizio stampa" Type="4" Code="93"/>
+			<Field Pos="38" Alias="OraStampa" Tid="C" Lud="5" Cif="5" Label="Ora di inizio stampa" Type="4" Code="94"/>
+			<Field Pos="39" Alias="CodOperatore" Tid="C" Lud="20" Cif="20" Label="Codice operatore" Type="4" Code="96"/>
+			<Field Pos="40" Alias="Stazione" Tid="C" Lud="2" Cif="2" Label="Stazione" Type="4" Code="99"/>
+			<Field Pos="41" Alias="PaginaNdiM" Tid="C" Lud="25" Cif="25" Label="Dicitura &apos;Pagina N di M&apos;" Type="4" Code="83"/>
+			<Field Pos="42" Alias="Logo" Tid="C" Lud="255" Cif="255" Label="Logo" Type="4" Code="85"/>
+			<Field Pos="43" Alias="CodProfilo" Tid="C" Lud="8" Cif="8" Label="Codice profilo" Type="4" Code="90"/>
+			<Field Pos="44" Alias="DataInizioDa" Label="Pianificazione Produzione: Da" Type="1" IdFilterOrigin="1" Code="901"/>
+			<Field Pos="45" Alias="DataInizioA" Label="Pianificazione Produzione: D A" Type="2" IdFilterOrigin="1" Code="902"/>
+			<Field Pos="46" Alias="Gruppo" Tid="C" Lud="2" Cif="2" Label="Gruppo in elaborazione" Type="4" Code="97"/>
+			<Field Pos="47" Alias="DesGruppo" Tid="C" Lud="50" Cif="50" Label="Descrizione Gruppo" Type="4" Code="98"/>
+			<Field Pos="48" Alias="CodArtCompostoDa" Label="Codice Articolo Composto Da" Type="1" IdFilterOrigin="4" Code="907"/>
+			<Field Pos="49" Alias="CodArtCompostoA" Label="Codice Articolo Composto A" Type="2" IdFilterOrigin="4" Code="908"/>
+			<Field Pos="50" Alias="IdDocumentoDa" Label="Identificatore Documento Da" Type="1" IdFilterOrigin="5" Code="909"/>
+			<Field Pos="51" Alias="IdDocumentoA" Label="Identificatore Documento A" Type="2" IdFilterOrigin="5" Code="910"/>
+			<Field Pos="52" Alias="NumRegEstesaDa" Label="Numero registrazione estesa Da" Type="1" IdFilterOrigin="6" Code="911"/>
+			<Field Pos="53" Alias="NumRegEstesaA" Label="Numero registrazione estesa A" Type="2" IdFilterOrigin="6" Code="912"/>
+			<Field Pos="1" Alias="Cost1" Output="1" Formula="{ºFNUP$}((&apos;TES&apos;))" Condition="{EORPROR.NPOS}=0.00" Format="FMT_Cost11" Tid="C" Lud="3" Cif="3" Label="RIG/TES" Code="118">
+				<CondExpression Formula="&apos;RIG&apos;" Condition="*"/>
+			</Field>
+			<Field Pos="9" Alias="TipoRigaUscita" Output="1" Formula="&apos;20&apos;" Condition="{EORPROR.NPOS}=0.00" Format="FMT_TipoRigaUscita9" Tid="C" Lud="2" Cif="2" Label="Tipo Riga mag-&gt;PROD" Code="120">
+				<CondExpression Formula="&apos;10&apos;" Condition="*"/>
+			</Field>
+			<Field Pos="20" Alias="NumRegEstesa" Output="1" Formula="{ºRIGHT$}({ºLEFT$}({ºSTR$}({EDOCS.PNU}),4),1)+{ºFNK$}({EDOCS.NRG},4)+{ºLEFT$}({ºFNK$}({ºFNDEC}({EORPROR.NPR},0),5),2)" Format="FMT_NumRegEstesa20" Tid="D" Lud="7" Cif="7" Label="Numero registrazione estesa con riga composto" Code="122"/>
+			<Field Pos="21" Alias="RifLotto" Output="1" Formula="&apos;00&apos;" Condition="({EORPROR.CART}=&apos;ZBT%&apos; OR {EORPROR.CART}=&apos;ZTB%&apos; OR {EORPROR.DES}=&apos;GOMMALACCA%&apos;) AND {EDOCRLOTTI.RPA}=&apos;&apos;" Format="FMT_RifLotto21" Tid="C" Lud="25" Cif="25" Label="Riferimento lotto predefinito se assente" Code="123">
+				<CondExpression Formula="&apos;00&apos;" Condition="*"/>
+			</Field>
+			<Field Pos="22" Alias="DesCompostoEstesa" Output="1" Formula="{EORPROR.CART}+{ºSPACE$}(1)+{ºCHR$}(45)+{ºSPACE$}(1)+{EORPROR.DES}" Condition="{EORPROR.NPOS}=0.00" Format="FMT_DesCompostoEstesa22" Tid="C" Lud="50" Cif="50" Label="Descrizione estesa del composto" Code="124">
+				<CondExpression Formula="{EORPROR.CARTC}+{ºSPACE$}(1)+{ºCHR$}(45)+{ºSPACE$}(1)+{EARAN.DES}" Condition="*"/>
+			</Field>
+			<Field Pos="23" Alias="CodArtComp" Output="1" Formula="&apos;XXXX&apos;" Condition="{tempCodArt1}=&apos;F&apos; OR {tempCodArt2}=&apos;10&apos; OR {tempCodArt2}=&apos;SV&apos; OR {tempCodArt4}=&apos;COLL&apos; OR {tempCodArt4}=&apos;SERV&apos; OR {tDesComp}=&apos;COLL&apos; OR {tempCodArt4}=&apos;ZNSGNG&apos; OR {tempCodArt2}=&apos;CS&apos; OR ({tDesComp}=&apos;PEDA&apos; AND {EORPROR.CART}&lt;&gt;&apos;ZPDGNGNEP00IT&apos;)" Format="FMT_CodArtComp23" Tid="C" Lud="15" Cif="15" Label="Cod Art comp, escluso vino,fasc,colla,nastro" Code="125">
+				<CondExpression Formula="{EORPROR.CART}" Condition="*"/>
+			</Field>
+			<Field Pos="24" Alias="IdDocEstesa" Output="1" Formula="{ºSTR$}({EORPROT.IDD})+{ºFNK$}({ºFNDEC}({EORPROR.NPR},0),5)" Format="FMT_IdDocEstesa24" Tid="D" Lud="10" Cif="10" Label="Identificativo documento con progressivo riga" Code="126"/>
+			<Field Pos="28" Alias="tempCodArt1" Formula="{ºLEFT$}({EORPROR.CART},1)" Format="FMT_tempCodArt128" Tid="C" Lud="1" Cif="1" Label="CodArt stringa di confronto|Fascetta"/>
+			<Field Pos="29" Alias="tempCodArt2" Formula="{ºLEFT$}({EORPROR.CART},2)" Format="FMT_tempCodArt229" Tid="C" Lud="2" Cif="2" Label="CodArt stringa di confronto|Vino"/>
+			<Field Pos="30" Alias="tempCodArt4" Formula="{ºLEFT$}({EORPROR.CART},4)" Format="FMT_tempCodArt430" Tid="C" Lud="4" Cif="4" Label="CodArt stringa di confronto|colla|servizio"/>
+			<Field Pos="31" Alias="tDesComp" Formula="{ºLEFT$}({EORPROR.DES},4)" Format="FMT_tDesComp31" Tid="C" Lud="4" Cif="4" Label="DesArt stringa di confronto|colla"/>
+			<Field Pos="32" Alias="Reg" Formula="{ºLEFT$}({ºSTR$}({EDOCS.PNU}),4)+{ºFNK$}({EDOCS.NRG},4)+{ºCHR$}(45)+{ºLEFT$}({ºFNK$}({ºFNDEC}({EORPROR.NPR},0),5),2)" Format="FMT_Reg32" Tid="C" Lud="25" Cif="25" Label="Stringa Registrazione estesa del documento produzi"/>
+		</Fields>
+		<Filters>
+			<CellFilter Pos="1" TableDfx="EORPROT" Name="DIN" Alias="DataInizio" Tid="A" Lud="4" Cif="8" Label="Pianificazione Produzione: Data Inizio" Condition="3" Runtime="1" RtmCondition="1" Operator="AND" IdFilter="1" Value1A="2023-05-01" Value2A="2099-12-31"/>
+			<CellFilter Pos="2" TableDfx="EORPROT" Name="IDD" Alias="IdDocumento" Tid="L" Lud="4" Cif="9" Label="Identificatore Documento" Condition="3" Runtime="1" RtmCondition="1" Operator="AND" IdFilter="5" Value2L="999999999"/>
+			<CellFilter Pos="3" TableDfx="EORPROR" Name="CARTC" Alias="CodArtComposto" Tid="C" Lud="25" Label="Codice Articolo Composto" Condition="3" Operator="AND" IdFilter="4" Value2C="zzzzzzzzzzzzzzzzzzzzzzzzz"/>
+			<CellFilter Pos="4" Alias="NumRegEstesa" Tid="D" Lud="7" Cif="7" Label="Numero registrazione estesa con riga composto" Condition="1" Runtime="1" RtmCondition="1" Operator="AND" IdFilter="6" Value1D="3008002" Value2D="9999999"/>
+		</Filters>
+		<OrderBy Ind="1">
+			<OrderByField TableDfx="EDOCS" Name="PNU" Alias="PeriodoRifNumeraz"/>
+			<OrderByField TableDfx="EORPROT" Name="DIN" Alias="DataInizio"/>
+			<OrderByField TableDfx="EDOCS" Name="NRG" Alias="NumRegistraz"/>
+			<OrderByField TableDfx="EORPROR" Name="NPR" Alias="NumProgrRiga" Asc="1"/>
+			<OrderByField TableDfx="EORPROR" Name="NPOS" Alias="NumPosComponente" Asc="1"/>
+			<OrderByField Alias="NumRegEstesa" Asc="1"/>
+		</OrderBy>
+		<Groups>
+			<Group Id="1" Label="LIV-1">
+				<GroupField Alias="NumRegEstesa"/>
+			</Group>
+		</Groups>
+	</Query>
+	<Form>
+		<Information Target="GRAFICO" Descr="Formato creato con report generator" Type="TCP" TypeDictionary="1" Orient="Orizzontale" Ver="1.0.0" WsOp="SE" Date="2014-02-05" Time="14:09">
+			<Size H="11514" W="16416" TraspBck="1" ColBck="RGB(255,255,255)"/>
+			<DrawGrid PX="10" PY="10" PrecX="1.01" PrecY="1.01"/>
+		</Information>
+		<Defaults>
+			<StyleRect>
+				<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+			</StyleRect>
+			<StyleLabel>
+				<Frame TraspBck="1"/>
+				<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1"/>
+			</StyleLabel>
+			<StyleVariable>
+				<Frame TraspBck="1"/>
+				<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" VertAlign="2"/>
+			</StyleVariable>
+		</Defaults>
+		<UserDictionary>
+			<Class>
+				<UserVariable Pos="1" Cod="1" Descr="RifDoc" Tid="1" EditType="3" Len="30">
+					<Exprs>
+						<CondExprs Formula="&apos;nï¿½&apos;+{ï¿½SPACE$}(1)+{@168}+{ï¿½SPACE$}(1)+&apos;del&apos;+{ï¿½SPACE$}(1)+{ï¿½FNEDDAT6$}({@127})"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="2" Descr="Lotto Data" Tid="1" EditType="3" Len="10">
+					<Exprs>
+						<CondExprs Formula="{ï¿½FNEDDAT8$}({@148})"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="3" Descr="Lotto" Tid="1" EditType="3" Len="45">
+					<Exprs>
+						<CondExprs Formula="{$2}" Cond="{@148}&lt;&gt;0 AND {@147}=&apos;&apos; AND {@149}=0" Descr="Data"/>
+						<CondExprs Formula="{ï¿½STR$}({@149})" Cond="{@149}&lt;&gt;0 AND {@148}=0 AND {@147}=&apos;&apos;" Descr="Numero"/>
+						<CondExprs Formula="{$2}+{ï¿½SPACE$}(2)+{@147}" Cond="{@148}&lt;&gt;0 AND {@149}=0 AND {@147}&lt;&gt;&apos;&apos;" Descr="Data+Alfa"/>
+						<CondExprs Formula="{$2}+{ï¿½SPACE$}(1)+{ï¿½STR$}({@149})" Cond="{@148}&lt;&gt;0 AND {@149}&lt;&gt;0 AND {@147}=&apos;&apos;" Descr="Data+Numero"/>
+						<CondExprs Formula="{@147}" Cond="{@147}&lt;&gt;&apos;&apos; AND {@148}=0 AND {@149}=0" Descr="Alfanumerico"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="20" Descr="Azienda" Tid="1" EditType="3" Len="65" Format="1">
+					<Format Len="65"/>
+					<Exprs>
+						<CondExprs Formula="{@1}+{ï¿½SPACE$}(1)+{@2}"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="21" Descr="Data/Ora" Tid="1" EditType="3" Len="20" Format="1">
+					<Format Len="20"/>
+					<Exprs>
+						<CondExprs Formula="{ï¿½FNEDDAT6$}({@93})+{ï¿½SPACE$}(1)+&apos;-&apos;+{ï¿½SPACE$}(1)+{@94}"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="22" Descr="Operatore" Tid="1" EditType="3" Len="30" Format="1">
+					<Format Len="30"/>
+					<Exprs>
+						<CondExprs Formula="&apos;Operatore: &apos;+{@96}"/>
+					</Exprs>
+				</UserVariable>
+			</Class>
+		</UserDictionary>
+		<Styles/>
+		<Background>
+			<Label Text=" Lista movimenti magazzino per Articolo con dettaglio lotti e collocazioni" Y="570" W="16416" H="399">
+				<Style>
+					<Frame Dim="1" Col="RGB(0,0,0)" ColBck="RGB(225,225,225)"/>
+					<Font Name="Arial" Size="16" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+				</Style>
+			</Label>
+		</Background>
+		<Sections>
+			<Section Id="1.0.0" Descr="AREA TESTATA" H="1368" FixPos="1">
+				<Rect W="1710" H="570" UseDef="1"/>
+				<Rect X="1710" W="12996" H="570" UseDef="1"/>
+				<Rect X="14706" W="1710" H="570" UseDef="1"/>
+				<Variable Cod="85" X="57" Y="57" W="1596" H="456" DbField="Logo">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" VertAlign="2"/>
+					</Style>
+					<Format Len="255"/>
+				</Variable>
+				<Variable Cod="1" X="1881" Y="171" W="2793" H="171" UseDict="1">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" VertAlign="2"/>
+					</Style>
+				</Variable>
+				<UserVariable3 Cod="21" UseDict="1" X="14763" Y="171" W="1596" H="171">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" VertAlign="2"/>
+					</Style>
+				</UserVariable3>
+				<Variable Cod="2" X="1881" Y="342" W="2793" H="171" UseDef="1" UseDict="1"/>
+				<UserVariable3 Cod="22" UseDef="1" UseDict="1" X="14763" Y="342" W="1596" H="171"/>
+				<Label Text="Mag." Y="1026" W="513" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Area" X="513" Y="1026" W="798" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Data
+reg." X="1311" Y="1026" W="798" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Riferimento
+registrazione" X="2109" Y="1026" W="1653" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Anagrafica" X="3762" Y="1026" W="2679" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Riferimento
+Documento" X="6441" Y="1026" W="1254" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Tipo
+mov." X="7695" Y="1026" W="399" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="UM" X="8094" Y="1026" W="342" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Quantitï¿½
+UdM" X="8436" Y="1026" W="1026" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="UM2" X="9462" Y="1026" W="342" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Quantitï¿½
+UDM2" X="9804" Y="1026" W="1026" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Valore
+Unitario" X="10830" Y="1026" W="1026" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Valore" X="11856" Y="1026" W="1026" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Cod.
+oper." X="12882" Y="1026" W="399" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Causale" X="13281" Y="1026" W="3135" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+			</Section>
+			<Section Id="2.0.0" Descr="AREA CORPO" Y="1368" H="9975" FixPos="1"/>
+			<Section Id="2.INT 1.1" Descr="INT 1" Y="1368" H="285" FixPos="1">
+				<Rect Y="1368" W="16416" H="285">
+					<Style>
+						<Frame Dim="2" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="10" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)"/>
+					</Style>
+				</Rect>
+				<Label Text="Articolo:" X="114" Y="1368" W="570" H="285">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Variable Cod="166" X="741" Y="1425" W="15618" H="171" UseDict="1" DbField="ArtVar">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Variable>
+			</Section>
+			<Section Id="2.INT 2.1" Descr="INT 2" Y="1653" H="228" FixPos="1">
+				<Line Y1="1653" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="103" X="57" Y="1653" W="399" H="171" UseDict="1" ResetIfEqual="1" DbField="CodMag">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+				</Variable>
+				<Line X1="513" Y1="1653" X2="513" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="105" X="570" Y="1653" W="684" H="171" UseDict="1" DbField="CodAreaMag">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Variable>
+				<Line X1="1311" Y1="1653" X2="1311" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="122" X="1368" Y="1653" W="684" H="171" DbField="DataRegistrazione">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+					<Format Len="8" SignType="2" EditType="1"/>
+				</Variable>
+				<Line X1="2109" Y1="1653" X2="2109" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="162" X="2166" Y="1653" W="1539" H="171" UseDict="1" ResetIfEqual="1" DbField="RifReg">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+				</Variable>
+				<Line X1="3762" Y1="1653" X2="3762" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="170" X="3819" Y="1653" W="2565" H="171" UseDef="1" UseDict="1" DbField="RifAnagr"/>
+				<Line X1="6441" Y1="1653" X2="6441" Y2="1881" UseDef="1" VarHeight="1"/>
+				<UserVariable3 Cod="1" UseDict="1" X="6498" Y="1653" W="1140" H="171">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+					<Cond CondExpr="{@168}&lt;&gt;&apos;&apos;"/>
+				</UserVariable3>
+				<Line X1="7695" Y1="1653" X2="7695" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="143" X="7752" Y="1653" W="285" H="171" DbField="MovMag">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+					<Format Len="6"/>
+				</Variable>
+				<Line X1="8094" Y1="1653" X2="8094" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="111" X="8151" Y="1653" W="228" H="171" UseDict="1" DbField="UmMag">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+				</Variable>
+				<Line X1="8436" Y1="1653" X2="8436" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="112" X="8493" Y="1653" W="912" H="171" DbField="QuantitaUmMag">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+					<Format Len="21" CatDecs="1" EditType="2"/>
+					<Cond CondExpr="{@112}&lt;&gt;0"/>
+				</Variable>
+				<Line X1="9462" Y1="1653" X2="9462" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="113" X="9519" Y="1653" W="228" H="171" UseDict="1" DbField="Um2Mag">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Variable>
+				<Line X1="9804" Y1="1653" X2="9804" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="114" X="9861" Y="1653" W="912" H="171" DbField="QtaUm2Mag">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Format Len="21" CatDecs="1" EditType="2"/>
+					<Cond CondExpr="{@114}&lt;&gt;0"/>
+				</Variable>
+				<Line X1="10830" Y1="1653" X2="10830" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="119" X="10887" Y="1653" W="912" H="171" DbField="ValoreUnitarioUdc">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+					<Format Len="21" CatDecs="3" EditType="2"/>
+					<Cond CondExpr="{@119}&lt;&gt;0"/>
+				</Variable>
+				<Line X1="11856" Y1="1653" X2="11856" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="115" X="11913" Y="1653" W="912" H="171" DbField="ValoreUdc">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+					<Format Len="21" CatDecs="4" EditType="2"/>
+					<Cond CondExpr="{@115}&lt;&gt;0"/>
+				</Variable>
+				<Line X1="12882" Y1="1653" X2="12882" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="139" X="12939" Y="1653" W="285" H="171" DbField="CodOpMag">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Format Len="6" SignType="2" EditType="3"/>
+				</Variable>
+				<Line X1="13281" Y1="1653" X2="13281" Y2="1881" UseDef="1" VarHeight="1"/>
+				<Variable Cod="154" X="13338" Y="1653" W="3021" H="171" FmtWrap="1" UseDim="1" DbField="CausaleMag">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+					<Format EditType="12"/>
+				</Variable>
+				<Line X1="16416" Y1="1653" X2="16416" Y2="1881" UseDef="1" VarHeight="1"/>
+			</Section>
+			<Section Id="2.RIGA.1" Descr="Corpo - Riga 1" Y="1881" H="228" CondExpr="{@147}&lt;&gt;&apos;&apos; OR {@148}&lt;&gt;0 OR {@149}&lt;&gt;0 OR {@171}=1">
+				<Line Y1="1881" Y2="2052" UseDef="1" VarHeight="1"/>
+				<Line Y1="1881" Y2="2109" UseDef="1" VarHeight="1"/>
+				<Line Y1="1881" X2="16416" Y2="1881" UseDef="1"/>
+				<Line X1="2109" Y1="1881" X2="2109" Y2="2109" UseDef="1" VarHeight="1"/>
+				<Label Text="Lotti:" X="2166" Y="1881" W="456" H="171">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Cond CondExpr="({@147}&lt;&gt;&apos;&apos; OR {@148}&lt;&gt;0 OR {@149}&lt;&gt;0) AND {@352}=1"/>
+				</Label>
+				<UserVariable3 Cod="3" UseDict="1" X="2565" Y="1881" W="1140" H="171">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+				</UserVariable3>
+				<UserVariable3 Cod="2" UseDict="1" X="2565" Y="1881" W="570" H="171">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+					<Cond CondExpr="{@148}=31122099"/>
+				</UserVariable3>
+				<Line X1="3762" Y1="1881" X2="3762" Y2="2109" UseDef="1" VarHeight="1"/>
+				<Label Text="Collocazioni:" X="3819" Y="1881" W="969" H="171">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Cond CondExpr="{@171}=1 AND {@169}&lt;&gt;&apos;&apos; AND {@352}=1"/>
+				</Label>
+				<Variable Cod="169" X="4674" Y="1881" W="1140" H="171" UseDef="1" UseDict="1" DbField="CollDin">
+					<Cond CondExpr="{@171}=1 AND {@169}&lt;&gt;&apos;&apos;"/>
+				</Variable>
+				<Line X1="6441" Y1="1881" X2="6441" Y2="2109" UseDef="1" VarHeight="1">
+					<Cond CondExpr="{@171}=1 AND {@169}&lt;&gt;&apos;&apos;"/>
+				</Line>
+				<Line X1="8436" Y1="1881" X2="8436" Y2="2109" UseDef="1" VarHeight="1"/>
+				<Variable Cod="153" X="8493" Y="1881" W="912" H="171" DbField="QuantitaLotCollUmMag">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Format Len="21" CatDecs="1" EditType="2"/>
+					<Cond CondExpr="{@153}&lt;&gt;0"/>
+				</Variable>
+				<Line X1="9462" Y1="1881" X2="9462" Y2="2109" UseDef="1" VarHeight="1"/>
+				<Line X1="16416" Y1="1881" X2="16416" Y2="2052" UseDef="1" VarHeight="1"/>
+				<Line X1="16416" Y1="1881" X2="16416" Y2="2109" UseDef="1" VarHeight="1"/>
+				<Line Y1="2109" X2="16416" Y2="2109" UseDef="1"/>
+			</Section>
+			<Section Id="3.0.0" Descr="AREA PIEDE" Y="11343" H="171" FixPos="1">
+				<Variable Cod="83" X="14364" Y="11343" W="2052" H="171" UseDict="1" DbField="PaginaNdiM">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" VertAlign="2"/>
+					</Style>
+				</Variable>
+			</Section>
+		</Sections>
+	</Form>
+	<SearchFilters/>
+	<MailingList>
+		<Location/>
+		<EMail/>
+		<Fields/>
+	</MailingList>
+	<FieldExts/>
+	<FieldsQuery>
+		<FieldQuery TableDfx="EORPROT" TableTrk="OPT" Name="IDD" Alias="IdDocumento" Preview="1"/>
+		<FieldQuery TableDfx="EORPROT" TableTrk="OPT" Name="DIN" Alias="DataInizio" Preview="1"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="IDR" Alias="IdRiga" Preview="1"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="NPR" Alias="NumProgrRiga" Preview="1"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="NPOS" Alias="NumPosComponente" Preview="1"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="CART" Alias="CodArt" Preview="1"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="DES" Alias="Des" Preview="1"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="CARTC" Alias="CodArtComposto" Preview="1"/>
+		<FieldQuery TableDfx="EORPROT" TableTrk="OPT" Name="*GR*" Alias="DBGruppo" Preview="1" GTitGrp="[Formula gruppo DataInizio]"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="GDO" Alias="GruppoDoc" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="CDO" Alias="ClasseDoc" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="PNU" Alias="PeriodoRifNumeraz" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="SNU" Alias="CodSerie" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="NRG" Alias="NumRegistraz" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="Reg" Alias="Reg"/>
+		<FieldQuery TableDfx="*QUERY*" Name="Cost1" Alias="Cost1" Preview="1"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="QT" Alias="Quantita" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="TipoRigaUscita" Alias="TipoRigaUscita" Preview="1"/>
+		<FieldQuery TableDfx="EDOCRLOTTI" TableTrk="DORL" Name="RPA" Alias="RifLottoAlfanum" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="NumRegEstesa" Alias="NumRegEstesa" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="NumRegODP" Alias="NumRegODP" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="RifLotto" Alias="RifLotto" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="Composto" Alias="Composto" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="CodArtComp" Alias="CodArtComp" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="DesCompostoEstesa" Alias="DesCompostoEstesa" Preview="1"/>
+		<FieldQuery TableDfx="PROVA2" Name="STATO" Alias="Stato2" Preview="1"/>
+		<FieldQuery TableDfx="PROVA2" TableId="1" Name="STATO" Alias="Stato" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="IdDocEstesa" Alias="IdDocEstesa" Preview="1"/>
+		<FieldQuery TableDfx="EORPROT" TableTrk="OPT" Name="DCO" Alias="DataTermine" Preview="1"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="TESTO" Alias="DesEstesa" Preview="1"/>
+		<FieldQuery TableDfx="EARAN" TableTrk="AR" Name="DES" Alias="DesArt" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="VDAT" Alias="FirmaUltVarData" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="tempCodArt1" Alias="tempCodArt1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="tempCodArt2" Alias="tempCodArt2"/>
+		<FieldQuery TableDfx="*QUERY*" Name="tempCodArt4" Alias="tempCodArt4"/>
+		<FieldQuery TableDfx="*QUERY*" Name="tDesComp" Alias="tDesComp"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="RIFRIGA" Alias="RiferimentoRiga" Preview="1"/>
+	</FieldsQuery>
+	<CondExts>
+		<CondExt IdFilter="1" TableDfx="EORPROT" TableTrk="OPT" Name="DIN" Alias="DataInizio" Tab="OrdProduzTestata" Active="1"/>
+		<CondExt IdFilter="5" TableDfx="EORPROT" TableTrk="OPT" Name="IDD" Alias="IdDocumento" Tab="OrdProduzTestata" Mandatory="1" Active="1"/>
+		<CondExt IdFilter="4" TableDfx="EORPROR" TableTrk="OPR" Name="CARTC" Alias="CodArtComposto" Tab="OrdProduzRighe"/>
+		<CondExt IdFilter="6" TableDfx="*QUERY*" Name="NumRegEstesa" Alias="NumRegEstesa" Tab="*Campo calcolato*" Active="1"/>
+	</CondExts>
+	<Actions>
+		<Action Alias="CodArt" Type="ArtAnagrafica" Params="{CodArt}" Code="2" Description="Interrogazione"/>
+	</Actions>
+	<GroupExts>
+		<GroupExt Id="1" Label="LIV-1" FileFeed="1"/>
+	</GroupExts>
+	<Storage/>
+	<GesProc/>
+	<UserFields/>
+	<OverConditions/>
+	<RepCorrels/>
+	<Export Output="1" DirExport="C:\SISTEMI\temp-odp\" FileExport="ODP.TXT" Encoding="1" ExfSep="|" ExdSep="." ExStrLimit="&quot;" ExdDateSep="/" Heading="1" Execute="0" DirModel="C:\SISTEMI\ENOLOGIA\REPORT\MODEL" Connection="1" HeadingType="1" MultiExport="1"/>
+</Report>
+

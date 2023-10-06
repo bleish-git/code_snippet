@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BC_DA_ANAGR_TAB>
+	<FILE>
+		<BCDBFILE ID="102483" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QARTICOLO" NOMD="QARTICOLO" DES="QARTICOLO" TIP="L" NUMT="1" NUMC="7" PAGB="2048" CPRD="1" EXP="1" GRUP="1" VDAT="19052023" VORA="14:13:32"/>
+	</FILE>
+	<FIELD>
+		<BCDBFIELD ID="1604928" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QARTICOLO" NPR="1" NOMC="CART" NOMD="CodArt" DES="Codice Articolo" TID="C" LUD="25"/>
+		<BCDBFIELD ID="1604929" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QARTICOLO" NPR="2" NOMC="DES" NOMD="DesArt" DES="Descrizione Articolo" TID="C" LUD="50"/>
+		<BCDBFIELD ID="1604930" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QARTICOLO" NPR="3" NOMC="CCOL" NOMD="CodAreaMagScarico" DES="Codice Area Magazzino Scarico" TID="C" LUD="15"/>
+		<BCDBFIELD ID="1604931" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QARTICOLO" NPR="4" NOMC="CCOM" NOMD="CodAreaMagStoccaggio" DES="Codice Area Magazzino Stoccaggio" TID="C" LUD="15"/>
+		<BCDBFIELD ID="1604932" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QARTICOLO" NPR="5" NOMC="TESTO" NOMD="DesEstesa" DES="Descrizione Estesa" TID="B"/>
+		<BCDBFIELD ID="1604933" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QARTICOLO" NPR="6" NOMC="CMAGC" NOMD="MagCodMagScarico" DES="Magazzino: Codice Magazzino Scarico Componenti" TID="C" LUD="4"/>
+		<BCDBFIELD ID="1604934" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QARTICOLO" NPR="7" NOMC="CMAG" NOMD="MagCodMagStoccaggio" DES="Magazzino: Codice Magazzino Stoccaggio" TID="C" LUD="4"/>
+	</FIELD>
+	<EXTEN>
+		<BCDBEXTEN ID="521285" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QARTICOLO" TDATO="1" EXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Report&gt;
+	&lt;Query Name=&quot;QARTICOLO&quot; Version=&quot;19/05/2023 14:13:32&quot; TopCount=&quot;-1&quot; Nolock=&quot;1&quot;&gt;
+		&lt;Dictionary&gt;
+			&lt;DDTable Dfx=&quot;EARAN&quot; Rtm=&quot;1&quot; Version=&quot;11/10/2022 17:39:53&quot; Dictionary=&quot;ES&quot;/&gt;
+		&lt;/Dictionary&gt;
+		&lt;Tables&gt;
+			&lt;Table Dfx=&quot;EARAN&quot; Dictionary=&quot;ES&quot;/&gt;
+		&lt;/Tables&gt;
+		&lt;Fields&gt;
+			&lt;Field Pos=&quot;1&quot; TableDfx=&quot;EARAN&quot; Name=&quot;CART&quot; Alias=&quot;CodArt&quot; Output=&quot;1&quot; RelationPath=&quot;EARAN&quot; Label=&quot;Codice Articolo&quot; Code=&quot;101&quot;/&gt;
+			&lt;Field Pos=&quot;2&quot; TableDfx=&quot;EARAN&quot; Name=&quot;DES&quot; Alias=&quot;DesArt&quot; Output=&quot;1&quot; RelationPath=&quot;EARAN&quot; Label=&quot;Descrizione Articolo&quot; Code=&quot;103&quot;/&gt;
+			&lt;Field Pos=&quot;3&quot; TableDfx=&quot;EARAN&quot; Name=&quot;CCOL&quot; Alias=&quot;CodAreaMagScarico&quot; Output=&quot;1&quot; RelationPath=&quot;EARAN&quot; Label=&quot;Codice Area Magazzino Scarico&quot; Code=&quot;104&quot;/&gt;
+			&lt;Field Pos=&quot;4&quot; TableDfx=&quot;EARAN&quot; Name=&quot;CCOM&quot; Alias=&quot;CodAreaMagStoccaggio&quot; Output=&quot;1&quot; RelationPath=&quot;EARAN&quot; Label=&quot;Codice Area Magazzino Stoccaggio&quot; Code=&quot;105&quot;/&gt;
+			&lt;Field Pos=&quot;5&quot; TableDfx=&quot;EARAN&quot; Name=&quot;TESTO&quot; Alias=&quot;DesEstesa&quot; Output=&quot;1&quot; RelationPath=&quot;EARAN&quot; Label=&quot;Descrizione Estesa&quot; Code=&quot;106&quot;/&gt;
+			&lt;Field Pos=&quot;6&quot; TableDfx=&quot;EARAN&quot; Name=&quot;CMAGC&quot; Alias=&quot;MagCodMagScarico&quot; Output=&quot;1&quot; RelationPath=&quot;EARAN&quot; Label=&quot;Magazzino: Codice Magazzino Scarico Componenti&quot; Code=&quot;107&quot;/&gt;
+			&lt;Field Pos=&quot;7&quot; TableDfx=&quot;EARAN&quot; Name=&quot;CMAG&quot; Alias=&quot;MagCodMagStoccaggio&quot; Output=&quot;1&quot; RelationPath=&quot;EARAN&quot; Label=&quot;Magazzino: Codice Magazzino Stoccaggio&quot; Code=&quot;108&quot;/&gt;
+			&lt;Field Pos=&quot;8&quot; Alias=&quot;CodArtDa&quot; Label=&quot;Codice Articolo Da&quot; Type=&quot;1&quot; IdFilterOrigin=&quot;1&quot; Code=&quot;901&quot;/&gt;
+			&lt;Field Pos=&quot;9&quot; Alias=&quot;CodArtA&quot; Label=&quot;Codice Articolo A&quot; Type=&quot;2&quot; IdFilterOrigin=&quot;1&quot; Code=&quot;902&quot;/&gt;
+			&lt;Field Pos=&quot;10&quot; Alias=&quot;TipoAnagrDa&quot; Label=&quot;Tipo Anagrafica (1-Articolo Da&quot; Type=&quot;1&quot; IdFilterOrigin=&quot;2&quot; Code=&quot;903&quot;/&gt;
+			&lt;Field Pos=&quot;11&quot; Alias=&quot;TipoAnagrA&quot; Label=&quot;Tipo Anagrafica (1-Articolo A&quot; Type=&quot;2&quot; IdFilterOrigin=&quot;2&quot; Code=&quot;904&quot;/&gt;
+		&lt;/Fields&gt;
+		&lt;Filters&gt;
+			&lt;CellFilter Pos=&quot;1&quot; TableDfx=&quot;EARAN&quot; Name=&quot;CART&quot; Alias=&quot;CodArt&quot; Tid=&quot;C&quot; Lud=&quot;25&quot; Label=&quot;Codice Articolo&quot; Condition=&quot;1&quot; Runtime=&quot;1&quot; RtmCondition=&quot;1&quot; Operator=&quot;AND&quot; IdFilter=&quot;1&quot; Value2C=&quot;zzzzzzzzzzzzzzzzzzzzzzzzz&quot;/&gt;
+		&lt;/Filters&gt;
+	&lt;/Query&gt;
+	&lt;Information Desc=&quot;QARTICOLO&quot; DescExt=&quot;REcupera le informazioni essenziali dell&amp;apos;articolo dall&amp;apos;anagrafica e non dal documento&quot; Context=&quot;4&quot; Output=&quot;5&quot; Version=&quot;2&quot; AbilityTree=&quot;1&quot; Preview=&quot;1&quot;/&gt;
+	&lt;FieldsQuery&gt;
+		&lt;FieldQuery TableDfx=&quot;EARAN&quot; TableTrk=&quot;AR&quot; Name=&quot;CART&quot; Alias=&quot;CodArt&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EARAN&quot; TableTrk=&quot;AR&quot; Name=&quot;DES&quot; Alias=&quot;DesArt&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EARAN&quot; TableTrk=&quot;AR&quot; Name=&quot;CCOL&quot; Alias=&quot;CodAreaMagScarico&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EARAN&quot; TableTrk=&quot;AR&quot; Name=&quot;CCOM&quot; Alias=&quot;CodAreaMagStoccaggio&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EARAN&quot; TableTrk=&quot;AR&quot; Name=&quot;TESTO&quot; Alias=&quot;DesEstesa&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EARAN&quot; TableTrk=&quot;AR&quot; Name=&quot;CMAGC&quot; Alias=&quot;MagCodMagScarico&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EARAN&quot; TableTrk=&quot;AR&quot; Name=&quot;CMAG&quot; Alias=&quot;MagCodMagStoccaggio&quot; Preview=&quot;1&quot;/&gt;
+	&lt;/FieldsQuery&gt;
+&lt;/Report&gt;"/>
+		<BCDBEXTEN ID="521286" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QARTICOLO" TDATO="5" EXT="REcupera le informazioni essenziali dell&apos;articolo dall&apos;anagrafica e non dal documento"/>
+	</EXTEN>
+</BC_DA_ANAGR_TAB>
+

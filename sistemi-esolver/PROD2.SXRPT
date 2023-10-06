@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Report>
+	<Information Desc="Produzione e legami documentali, fino al DDT di uscita merce" DescExt="Il report collega informazioni sulle righe di un OdP, i lotti dei composti, le eventuali SSCC. Nel tentativo di determinare il DDT di vendita (ovvero la data e la quantità) che ha trasferito il pallet a Sibiliana." Context="4" Output="5" Version="3" AbilityTree="1" EnablePrintHeaders="1" Preview="1" BcVersion="30.6.2.0 - 15/05/2023 - 09:06:11"/>
+	<Query Name="Produzione e legami documentali, fino al DDT di us" Version="20/07/2023 12:00:10" OrderCount="1" TopCount="-1" Nolock="1">
+		<Dictionary>
+			<DDTable Dfx="EORPROR" Rtm="1" Version="02/08/2022 14:19:57" Dictionary="ES"/>
+			<DDTable Dfx="LETLOGPROD" Rtm="1" Version="25/07/2019 11:12:10" Dictionary="LENOLOGIS"/>
+			<DDTable Dfx="LMOVSSCC" Rtm="1" Version="26/10/2018 11:03:10" Dictionary="LENOLOGIS"/>
+			<DDTable Dfx="LETLOG" Rtm="1" Version="10/12/2018 11:37:02" Dictionary="LENOLOGIS"/>
+			<DDTable Dfx="EDOCS" Rtm="1" Version="03/10/2021 20:00:19" Dictionary="ES"/>
+			<DDTable Dfx="LTRASFR" Rtm="1" Version="22/12/2010 09:34:19" Dictionary="LENOLOGIS"/>
+		</Dictionary>
+		<Tables>
+			<Table Dfx="EORPROR" Dictionary="ES"/>
+			<Table Dfx="LETLOGPROD" Dictionary="LENOLOGIS">
+				<ParentRelation Name="EORPROR_LETLOGPROD" ParentTableDfx="EORPROR" JoinType="LEFT" RelationType="2" Dynamic="1">
+					<RelationField FieldName="IDD" ParentFieldName="IDD" Operator="="/>
+					<RelationField FieldName="IDR" ParentFieldName="IDR" Operator="="/>
+				</ParentRelation>
+			</Table>
+			<Table Id="1" Dfx="LMOVSSCC" Dictionary="LENOLOGIS">
+				<ParentRelation Name="LETLOGPROD_LMOVSSCC" ParentTableDfx="LETLOGPROD" JoinType="LEFT" RelationType="2" Dynamic="1">
+					<RelationField FieldName="IDD" ParentFieldName="IDD" Operator="="/>
+					<RelationField FieldName="IDR" ParentFieldName="IDR" Operator="="/>
+				</ParentRelation>
+			</Table>
+			<Table Id="1" Dfx="LETLOG" Dictionary="LENOLOGIS">
+				<ParentRelation Name="LMOVSSCC_LETLOG" ParentTableId="1" ParentTableDfx="LMOVSSCC" JoinType="LEFT" RelationType="2" Dynamic="1">
+					<RelationField FieldName="IDD" ParentFieldName="IDDS" Operator="="/>
+					<RelationField FieldName="IDP" ParentFieldName="IDPS" Operator="="/>
+				</ParentRelation>
+			</Table>
+			<Table Dfx="EDOCS" Dictionary="ES">
+				<ParentRelation Name="EORPROR_EDOCS" ParentTableDfx="EORPROR" JoinType="JOIN" RelationType="2" Dynamic="1">
+					<RelationField FieldName="IDD" ParentFieldName="IDD" Operator="="/>
+				</ParentRelation>
+			</Table>
+			<Table Dfx="LTRASFR" Dictionary="LENOLOGIS">
+				<ParentRelation Name="LETLOG_LTRASFR" ParentTableId="1" ParentTableDfx="LETLOG" JoinType="LEFT" RelationType="2" Dynamic="1">
+					<RelationField FieldName="IDD" ParentFieldName="IDD" Operator="="/>
+					<RelationField FieldName="IDP" ParentFieldName="IDP" Operator="="/>
+				</ParentRelation>
+			</Table>
+		</Tables>
+		<Fields>
+			<Field Pos="1" TableDfx="EORPROR" Name="IDD" Alias="IdDocumento" Output="1" RelationPath="EORPROR" Label="IdDocumento OdP" Code="101"/>
+			<Field Pos="2" TableDfx="EORPROR" Name="IDR" Alias="IdRiga" RelationPath="EORPROR" Label="Identificatore Riga"/>
+			<Field Pos="3" TableDfx="EDOCS" Name="NRG" Alias="NumRegistraz" Output="1" RelationPath="EORPROR;EORPROR_EDOCS" Label="Registrazione: Numero" Code="128"/>
+			<Field Pos="4" TableDfx="EDOCS" Name="PNU" Alias="PeriodoRifNumeraz" Output="1" RelationPath="EORPROR;EORPROR_EDOCS" Label="Registrazione: Periodo Riferimento Nu" Code="129"/>
+			<Field Pos="5" TableDfx="EORPROR" Name="NPR" Alias="NumProgrRiga" Output="1" RelationPath="EORPROR" Label="Numero Progressivo Riga" Code="103"/>
+			<Field Pos="7" TableDfx="EORPROR" Name="NPOS" Alias="NumPosComponente" RelationPath="EORPROR" Label="Numero Posizione Componente"/>
+			<Field Pos="8" TableDfx="EORPROR" Name="CART" Alias="CodArt" Output="1" RelationPath="EORPROR" Label="Codice Articolo" Code="104"/>
+			<Field Pos="9" TableDfx="EORPROR" Name="DES" Alias="Des" Output="1" RelationPath="EORPROR" Label="Descrizione Riga" Code="105"/>
+			<Field Pos="10" TableDfx="LETLOGPROD" Name="QTP" Alias="QuantitaProdotta" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD" Label="Quantita&apos; Prodotta" Code="110"/>
+			<Field Pos="11" TableDfx="LETLOGPROD" Name="QTPAL" Alias="QuantitaPallet" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD" Label="QuantitÀ Per Pallet" Code="109"/>
+			<Field Pos="12" TableDfx="LETLOGPROD" Name="RPA" Alias="RifLottoAlfanum" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD" Label="Riferimento Lotto da OdP" Code="111"/>
+			<Field Pos="13" TableDfx="LETLOGPROD" Name="NETST" Alias="NumEticStampate" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD" Label="Numero Etichette Stampate" Code="112"/>
+			<Field Pos="14" TableDfx="LETLOG" TableId="1" Name="DCRE" Alias="DataCreazione" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG" Label="Data creazione SSCC" Code="120"/>
+			<Field Pos="16" TableDfx="LETLOG" TableId="1" Name="IDC" Alias="IdControllo" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG" Label="Identificatore Di Controllo (sscc)" Code="121"/>
+			<Field Pos="17" TableDfx="LETLOG" TableId="1" Name="IDD" Alias="IdDitta" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG" Label="Identificatore Ditta (sscc)" Code="122"/>
+			<Field Pos="18" TableDfx="LETLOG" TableId="1" Name="IDP" Alias="IdProgressivo" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG" Label="Identificatore Progressivo (sscc)" Code="123"/>
+			<Field Pos="19" TableDfx="LETLOG" TableId="1" Name="NCOLE" Alias="NumColEff" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG" Label="Numero Colli Rimanenti" Code="124"/>
+			<Field Pos="20" TableDfx="LETLOG" TableId="1" Name="NCOLP" Alias="NumColPal" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG" Label="Numero Colli Per Pallet" Code="125"/>
+			<Field Pos="21" TableDfx="LETLOG" TableId="1" Name="NETIC" Alias="NumEtic" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG" Label="Numero progressivo Etichetta" Code="126"/>
+			<Field Pos="22" TableDfx="LETLOG" TableId="1" Name="ID0010A" Alias="RifLottoAlfa" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG" Label="Riferimento Lotto per verifica" Code="127"/>
+			<Field Pos="23" TableDfx="LETLOG" TableId="1" Name="CARTUN" Alias="CodArtUnitLog" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG" Label="Codice Articolo Unita&apos; Logistica"/>
+			<Field Pos="24" TableDfx="LTRASFR" Name="IDO" Alias="IdOper" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG;LETLOG_LTRASFR" Label="DDT di acquisto in Sibiliana" Code="132"/>
+			<Field Pos="25" TableDfx="LTRASFR" Name="NCO" Alias="NumCol" Output="1" RelationPath="EORPROR;EORPROR_LETLOGPROD;LETLOGPROD_LMOVSSCC;LMOVSSCC_LETLOG;LETLOG_LTRASFR" Label="Numero Colli" Code="133"/>
+			<Field Pos="26" Alias="NomeReport" Tid="C" Lud="64" Cif="64" Label="Nome del file di definizione del report" Type="4" Code="81"/>
+			<Field Pos="27" Alias="DesReport" Tid="C" Lud="50" Cif="50" Label="Descrizione del report" Type="4" Code="82"/>
+			<Field Pos="28" Alias="NumPagina" Tid="D" Lud="5" Cif="5" Label="Numero di pagina" Type="4" Code="91"/>
+			<Field Pos="29" Alias="TotPagine" Tid="D" Lud="5" Cif="5" Label="Numero totale di pagine" Type="4" Code="92"/>
+			<Field Pos="30" Alias="DataStampa" Tid="A" Lud="10" Cif="-1" Label="Data di inizio stampa" Type="4" Code="93"/>
+			<Field Pos="31" Alias="OraStampa" Tid="C" Lud="5" Cif="5" Label="Ora di inizio stampa" Type="4" Code="94"/>
+			<Field Pos="32" Alias="CodOperatore" Tid="C" Lud="20" Cif="20" Label="Codice operatore" Type="4" Code="96"/>
+			<Field Pos="33" Alias="Gruppo" Tid="C" Lud="2" Cif="2" Label="Gruppo in elaborazione" Type="4" Code="97"/>
+			<Field Pos="34" Alias="DesGruppo" Tid="C" Lud="50" Cif="50" Label="Descrizione Gruppo" Type="4" Code="98"/>
+			<Field Pos="35" Alias="Stazione" Tid="C" Lud="2" Cif="2" Label="Stazione" Type="4" Code="99"/>
+			<Field Pos="36" Alias="PaginaNdiM" Tid="C" Lud="25" Cif="25" Label="Dicitura &apos;Pagina N di M&apos;" Type="4" Code="83"/>
+			<Field Pos="37" Alias="Logo" Tid="C" Lud="255" Cif="255" Label="Logo" Type="4" Code="85"/>
+			<Field Pos="38" Alias="CodProfilo" Tid="C" Lud="8" Cif="8" Label="Codice profilo" Type="4" Code="90"/>
+			<Field Pos="39" Alias="NumPosComponenteDa" Label="Numero Posizione Componente Da" Type="1" IdFilterOrigin="1" Code="901"/>
+			<Field Pos="40" Alias="NumPosComponenteA" Label="Numero Posizione Componente A" Type="2" IdFilterOrigin="1" Code="902"/>
+			<Field Pos="41" Alias="IdProgressivoDa" Label="Identificatore Progressivo Da" Type="1" IdFilterOrigin="2" Code="903"/>
+			<Field Pos="42" Alias="IdProgressivoA" Label="Identificatore Progressivo ( A" Type="2" IdFilterOrigin="2" Code="904"/>
+			<Field Pos="43" Alias="RifLottoAlfanumDa" Label="Riferimento Lotto da OdP Da" Type="1" IdFilterOrigin="3" Code="905"/>
+			<Field Pos="44" Alias="RifLottoAlfanumA" Label="Riferimento Lotto da OdP A" Type="2" IdFilterOrigin="3" Code="906"/>
+			<Field Pos="6" Alias="IdODP" Output="1" Formula="({EDOCS.PNU}-2020)*1000000+({EDOCS.NRG}*100)+{EORPROR.NPR}" Format="FMT_IdODP6" Tid="D" Lud="7" Cif="7" Label="Identificatore ODP esteso con riga composto" Code="130"/>
+			<Field Pos="15" Alias="SSCC" Output="1" Formula="{ºFNK$}({LETLOG@1.IDD},9)+{ºFNK$}({LETLOG@1.IDP},8)+{ºFNK$}({LETLOG@1.IDC},1)" Format="FMT_SSCC15" Tid="C" Lud="18" Cif="18" Label="SSCC Etic. Log." Code="131"/>
+		</Fields>
+		<Filters>
+			<CellFilter Pos="1" TableDfx="EORPROR" Name="NPOS" Alias="NumPosComponente" Tid="S" Lud="4" Cif="9" Dec="2" Label="Numero Posizione Componente" Condition="1" Runtime="1" RtmCondition="1" Operator="AND" IdFilter="1" Value2S="9999999"/>
+			<CellFilter Pos="2" TableDfx="LETLOG" TableId="1" Name="IDP" Alias="IdProgressivo" Tid="L" Lud="4" Cif="8" Label="Identificatore Progressivo (sscc)" Condition="3" Runtime="1" RtmCondition="1" Operator="AND" IdFilter="2" Value2L="99999999"/>
+			<CellFilter Pos="3" TableDfx="LETLOGPROD" Name="RPA" Alias="RifLottoAlfanum" Tid="C" Lud="25" Label="Riferimento Lotto: Alfanumerico" Condition="3" Runtime="1" RtmCondition="1" Operator="AND" IdFilter="3" Value2C="zzzzzzzzzzzzzzzzzzzzzzzzz"/>
+		</Filters>
+		<OrderBy Ind="1">
+			<OrderByField TableDfx="EORPROR" Name="IDD" Alias="IdDocumento"/>
+			<OrderByField TableDfx="EORPROR" Name="NPR" Alias="NumProgrRiga" Asc="1"/>
+			<OrderByField TableDfx="LETLOG" TableId="1" Name="NETIC" Alias="NumEtic" Asc="1"/>
+		</OrderBy>
+	</Query>
+	<Dictionary Name="PROD2" Descr="Produzione e legami documentali, fino al DDT di us" Location="1">
+		<Sections>
+			<Section Name="RIGA" Descr="Riga di corpo"/>
+		</Sections>
+		<Class Pos="1" Descr="Variabili PROD2">
+			<Variable Pos="101" Code="101" Descr="IdDocumento" DescrShort="IdDocumento OdP" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: OrdProduzRighe.IdDocumento Nome interno: EO" DataType="L" DbField="IdDocumento"/>
+			<Variable Pos="128" Code="128" Descr="NumRegistraz" DescrShort="Registrazione: Numero" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: DocElencoGen.NumRegistraz Nome interno: EDO" DataType="L" DbField="NumRegistraz"/>
+			<Variable Pos="129" Code="129" Descr="PeriodoRifNumeraz" DescrShort="Registrazione: Periodo Riferimento Nu" Section="C" EditType="2" Len="11" NumDecs="2" Notes="Campo: DocElencoGen.PeriodoRifNumeraz Nome interno" DataType="S" DbField="PeriodoRifNumeraz"/>
+			<Variable Pos="103" Code="103" Descr="NumProgrRiga" DescrShort="Numero Progressivo Riga" Section="C" EditType="2" Len="11" NumDecs="2" Notes="Campo: OrdProduzRighe.NumProgrRiga Nome interno: E" DataType="S" DbField="NumProgrRiga"/>
+			<Variable Pos="130" Code="130" Descr="IdODP" DescrShort="Identificatore ODP esteso con riga composto" Section="C" EditType="2" Len="20" Zeros="1" Notes="Campo utente: IdODP" DataType="D" DbField="IdODP"/>
+			<Variable Pos="104" Code="104" Descr="CodArt" DescrShort="Codice Articolo" Section="C" Len="25" Notes="Campo: OrdProduzRighe.CodArt Nome interno: EORPROR" DataType="C" DbField="CodArt"/>
+			<Variable Pos="105" Code="105" Descr="Des" DescrShort="Descrizione Riga" Section="C" Len="200" Notes="Campo: OrdProduzRighe.Des Nome interno: EORPROR.DE" DataType="C" DbField="Des"/>
+			<Variable Pos="110" Code="110" Descr="QuantitaProdotta" DescrShort="Quantita&apos; Prodotta" Section="C" EditType="2" Len="21" NumDecs="4" Notes="Campo: EticLogisOrdProduz.QuantitaProdotta Nome in" DataType="D" DbField="QuantitaProdotta"/>
+			<Variable Pos="109" Code="109" Descr="QuantitaPallet" DescrShort="QuantitÀ Per Pallet" Section="C" EditType="2" Len="21" NumDecs="4" Notes="Campo: EticLogisOrdProduz.QuantitaPallet Nome inte" DataType="D" DbField="QuantitaPallet"/>
+			<Variable Pos="111" Code="111" Descr="RifLottoAlfanum" DescrShort="Riferimento Lotto da OdP" Section="C" Len="25" Notes="Campo: EticLogisOrdProduz.RifLottoAlfanum Nome int" DataType="C" DbField="RifLottoAlfanum"/>
+			<Variable Pos="112" Code="112" Descr="NumEticStampate" DescrShort="Numero Etichette Stampate" Section="C" EditType="2" Len="6" Zeros="1" Notes="Campo: EticLogisOrdProduz.NumEticStampate Nome int" DataType="I" DbField="NumEticStampate"/>
+			<Variable Pos="120" Code="120" Descr="DataCreazione" DescrShort="Data creazione SSCC" Section="C" EditType="4" Len="10" SignType="2" Zeros="1" Notes="Campo: EticLogistiche.DataCreazione Nome interno:" DataType="A" DbField="DataCreazione"/>
+			<Variable Pos="131" Code="131" Descr="SSCC" DescrShort="SSCC Etic. Log." Section="C" Len="18" Notes="Campo utente: SSCC" DataType="C" DbField="SSCC"/>
+			<Variable Pos="121" Code="121" Descr="IdControllo" DescrShort="Identificatore Di Controllo (sscc)" Section="C" EditType="3" Len="1" SignType="2" Zeros="1" Notes="Campo: EticLogistiche.IdControllo Nome interno: LE" DataType="N" DbField="IdControllo"/>
+			<Variable Pos="122" Code="122" Descr="IdDitta" DescrShort="Identificatore Ditta (sscc)" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: EticLogistiche.IdDitta Nome interno: LETLOG" DataType="L" DbField="IdDitta"/>
+			<Variable Pos="123" Code="123" Descr="IdProgressivo" DescrShort="Identificatore Progressivo (sscc)" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: EticLogistiche.IdProgressivo Nome interno:" DataType="L" DbField="IdProgressivo"/>
+			<Variable Pos="124" Code="124" Descr="NumColEff" DescrShort="Numero Colli Rimanenti" Section="C" EditType="2" Len="21" NumDecs="4" Notes="Campo: EticLogistiche.NumColEff Nome interno: LETL" DataType="D" DbField="NumColEff"/>
+			<Variable Pos="125" Code="125" Descr="NumColPal" DescrShort="Numero Colli Per Pallet" Section="C" EditType="2" Len="21" NumDecs="4" Notes="Campo: EticLogistiche.NumColPal Nome interno: LETL" DataType="D" DbField="NumColPal"/>
+			<Variable Pos="126" Code="126" Descr="NumEtic" DescrShort="Numero progressivo Etichetta" Section="C" EditType="3" Len="5" SignType="2" Zeros="1" Notes="Campo: EticLogistiche.NumEtic Nome interno: LETLOG" DataType="N" DbField="NumEtic"/>
+			<Variable Pos="127" Code="127" Descr="RifLottoAlfa" DescrShort="Riferimento Lotto per verifica" Section="C" Len="25" Notes="Campo: EticLogistiche.RifLottoAlfa Nome interno: L" DataType="C" DbField="RifLottoAlfa"/>
+			<Variable Pos="132" Code="132" Descr="IdOper" DescrShort="DDT di acquisto in Sibiliana" Section="C" EditType="2" Len="14" Zeros="1" Notes="Campo: TrasferPalletRighe.IdOper Nome interno: LTR" DataType="L" DbField="IdOper"/>
+			<Variable Pos="133" Code="133" Descr="NumCol" DescrShort="Numero Colli" Section="C" EditType="2" Len="21" NumDecs="4" Notes="Campo: TrasferPalletRighe.NumCol Nome interno: LTR" DataType="D" DbField="NumCol"/>
+		</Class>
+		<Class Pos="3" Descr="Variabili Contesto Report">
+			<Variable Pos="81" Code="81" Descr="Nome del file di definizione del report" DescrShort="Nome Report" Section="T" Len="64" DataType="C" DbField="NomeReport"/>
+			<Variable Pos="82" Code="82" Descr="Descrizione del report" DescrShort="Desc. Report" Section="T" Len="50" DataType="C" DbField="DesReport"/>
+			<Variable Pos="91" Code="91" Descr="Numero di pagina" DescrShort="Pagina" Section="T" EditType="3" Len="5" SignType="2" DataType="N" DbField="NumPagina"/>
+			<Variable Pos="92" Code="92" Descr="Numero totale di pagine" DescrShort="Totale Pagine" Section="T" EditType="3" Len="5" SignType="2" DataType="N" DbField="TotPagine"/>
+			<Variable Pos="93" Code="93" Descr="Data di inizio stampa" DescrShort="Data" Section="T" EditType="4" Len="10" SignType="2" DataType="A" DbField="DataStampa"/>
+			<Variable Pos="94" Code="94" Descr="Ora di inizio stampa" DescrShort="Ora" Section="T" Len="5" DataType="C" DbField="OraStampa"/>
+			<Variable Pos="96" Code="96" Descr="Codice operatore" DescrShort="Operatore" Section="T" Len="20" DataType="C" DbField="CodOperatore"/>
+			<Variable Pos="97" Code="97" Descr="Gruppo in elaborazione" DescrShort="Gruppo" Section="T" Len="2" DataType="C" DbField="Gruppo"/>
+			<Variable Pos="98" Code="98" Descr="Descrizione gruppo" DescrShort="Descrizione gruppo" Section="T" Len="50" DataType="C" DbField="DesGruppo"/>
+			<Variable Pos="99" Code="99" Descr="Stazione" DescrShort="Stazione" Section="T" Len="2" DataType="C" DbField="Stazione"/>
+			<Variable Pos="83" Code="83" Descr="Dicitura &apos;Pagina N di M&apos;" DescrShort="PaginaNdiM" Section="T" Len="25" DataType="C" DbField="PaginaNdiM"/>
+			<Variable Pos="85" Code="85" Descr="Logo" DescrShort="Logo" Section="T" Len="255" DataType="C" DbField="Logo"/>
+			<Variable Pos="90" Code="90" Descr="Codice profilo" DescrShort="Profilo" Section="T" Len="8" DataType="C" DbField="CodProfilo"/>
+		</Class>
+		<Class Pos="4" Descr="Variabili Opzioni del Report">
+			<Variable Pos="901" Code="901" Descr="Numero Posizione Componente (Da)" DescrShort="Numero Posizione Componente (Da)" Section="T" EditType="2" Len="11" NumDecs="2" DataType="S" DbField="NumPosComponenteDa"/>
+			<Variable Pos="902" Code="902" Descr="Numero Posizione Componente (a)" DescrShort="Numero Posizione Componente (a)" Section="T" EditType="2" Len="11" NumDecs="2" DataType="S" DbField="NumPosComponenteA"/>
+			<Variable Pos="903" Code="903" Descr="Identificatore Progressivo (sscc) (Da)" DescrShort="Identificatore Progressivo (sscc) (Da)" Section="T" EditType="2" Len="14" Zeros="1" DataType="L" DbField="IdProgressivoDa"/>
+			<Variable Pos="904" Code="904" Descr="Identificatore Progressivo (sscc) (a)" DescrShort="Identificatore Progressivo (sscc) (a)" Section="T" EditType="2" Len="14" Zeros="1" DataType="L" DbField="IdProgressivoA"/>
+			<Variable Pos="905" Code="905" Descr="Riferimento Lotto: Alfanumerico (Da)" DescrShort="Riferimento Lotto: Alfanumerico (Da)" Section="T" Len="25" DataType="C" DbField="RifLottoAlfanumDa"/>
+			<Variable Pos="906" Code="906" Descr="Riferimento Lotto: Alfanumerico (a)" DescrShort="Riferimento Lotto: Alfanumerico (a)" Section="T" Len="25" DataType="C" DbField="RifLottoAlfanumA"/>
+		</Class>
+	</Dictionary>
+	<GesProc/>
+	<SearchFilters/>
+	<MailingList>
+		<Location/>
+		<EMail/>
+		<Fields/>
+	</MailingList>
+	<FieldExts/>
+	<FieldsQuery>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="IDD" Alias="IdDocumento" Preview="1"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="IDR" Alias="IdRiga"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="NPR" Alias="NumProgrRiga"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="NPOS" Alias="NumPosComponente"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="CART" Alias="CodArt" Preview="1"/>
+		<FieldQuery TableDfx="EORPROR" TableTrk="OPR" Name="DES" Alias="Des" Preview="1"/>
+		<FieldQuery TableDfx="LETLOGPROD" TableTrk="EL" Name="QTPAL" Alias="QuantitaPallet" Preview="1"/>
+		<FieldQuery TableDfx="LETLOGPROD" TableTrk="EL" Name="QTP" Alias="QuantitaProdotta" Preview="1"/>
+		<FieldQuery TableDfx="LETLOGPROD" TableTrk="EL" Name="RPA" Alias="RifLottoAlfanum" Preview="1"/>
+		<FieldQuery TableDfx="LETLOGPROD" TableTrk="EL" Name="NETST" Alias="NumEticStampate" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableTrk="EL" Name="ID0001" Alias="CodEanArt" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableTrk="EL" Name="ID0002" Alias="CodEanUnitLog" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableTrk="EL" Name="DCRE" Alias="DataCreazione" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableTrk="EL" Name="IDC" Alias="IdControllo" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableTrk="EL" Name="IDD" Alias="IdDitta" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableTrk="EL" Name="IDP" Alias="IdProgressivo" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableTrk="EL" Name="NCOLE" Alias="NumColEff" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableTrk="EL" Name="NCOLP" Alias="NumColPal" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableTrk="EL" Name="NETIC" Alias="NumEtic" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableTrk="EL" Name="ID0037" Alias="QtaPerUnLog" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableId="1" TableTrk="EL" Name="DCRE" Alias="DataCreazione" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableId="1" TableTrk="EL" Name="IDC" Alias="IdControllo"/>
+		<FieldQuery TableDfx="LETLOG" TableId="1" TableTrk="EL" Name="IDD" Alias="IdDitta"/>
+		<FieldQuery TableDfx="LETLOG" TableId="1" TableTrk="EL" Name="IDP" Alias="IdProgressivo"/>
+		<FieldQuery TableDfx="LETLOG" TableId="1" TableTrk="EL" Name="NCOLE" Alias="NumColEff" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableId="1" TableTrk="EL" Name="NCOLP" Alias="NumColPal" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableId="1" TableTrk="EL" Name="NETIC" Alias="NumEtic" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableId="1" TableTrk="EL" Name="ID0010A" Alias="RifLottoAlfa" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" Name="RIF" Alias="Riferimento2" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableId="1" TableTrk="DO" Name="RIF" Alias="Riferimento" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" TableId="1" Name="CART" Alias="CodArt2" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" TableId="1" Name="DRG" Alias="DataRegistrazione" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" TableId="1" Name="IDD" Alias="IdDocumento2" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" TableId="1" Name="IDR" Alias="IdRigaDoc" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" TableId="1" Name="NRG" Alias="NumRegistraz" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" TableId="1" Name="PNU" Alias="PeriodoRifNumeraz" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" TableId="1" Name="QT" Alias="Quantita" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" TableId="1" Name="RIF" Alias="Riferimento" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" TableId="1" Name="RPA" Alias="RifLottoAlfanum2" Preview="1"/>
+		<FieldQuery TableDfx="QARTLOTTI" TableId="1" Name="UM" Alias="UnitaMisura" Preview="1"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="NRG" Alias="NumRegistraz"/>
+		<FieldQuery TableDfx="EDOCS" TableTrk="DO" Name="PNU" Alias="PeriodoRifNumeraz"/>
+		<FieldQuery TableDfx="*QUERY*" Name="IdODP" Alias="IdODP" Preview="1"/>
+		<FieldQuery TableDfx="*QUERY*" Name="SSCC" Alias="SSCC" Preview="1"/>
+		<FieldQuery TableDfx="LETLOG" TableId="1" TableTrk="EL" Name="CARTUN" Alias="CodArtUnitLog"/>
+		<FieldQuery TableDfx="LPMSSCC" TableTrk="PMR" Name="IDO" Alias="IdOperazione" Preview="1"/>
+		<FieldQuery TableDfx="LPMSSCC" TableTrk="PMR" Name="NCO" Alias="NumColli" Preview="1"/>
+		<FieldQuery TableDfx="LPMSSCC" TableTrk="PMR" Name="QTM" Alias="QtaUmMag" Preview="1"/>
+		<FieldQuery TableDfx="LPMSSCC" TableTrk="PMR" Name="QT" Alias="Quantita" Preview="1"/>
+		<FieldQuery TableDfx="LPMSSCC" TableTrk="PMR" Name="UMM" Alias="UmMag" Preview="1"/>
+		<FieldQuery TableDfx="LTRASFR" TableTrk="TR" Name="IDO" Alias="IdOper" Preview="1"/>
+		<FieldQuery TableDfx="LTRASFR" TableTrk="TR" Name="NCO" Alias="NumCol" Preview="1"/>
+	</FieldsQuery>
+	<UserFields/>
+	<OverConditions/>
+	<CondExts>
+		<CondExt IdFilter="1" TableDfx="EORPROR" TableTrk="OPR" Name="NPOS" Alias="NumPosComponente" Tab="OrdProduzRighe" Mandatory="1" Active="1"/>
+		<CondExt IdFilter="2" TableDfx="LETLOG" TableTrk="EL" Name="IDP" Alias="IdProgressivo" Tab="EticLogistiche" Active="1"/>
+		<CondExt IdFilter="3" TableDfx="LETLOGPROD" TableTrk="EL" Name="RPA" Alias="RifLottoAlfanum" Tab="EticLogisOrdProduz" Mandatory="1" Active="1"/>
+	</CondExts>
+	<Actions/>
+	<GroupExts/>
+	<Storage/>
+	<RepCorrels/>
+</Report>
+

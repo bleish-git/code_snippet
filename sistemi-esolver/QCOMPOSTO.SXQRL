@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BC_DA_ANAGR_TAB>
+	<FILE>
+		<BCDBFILE ID="102482" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QCOMPOSTO" NOMD="QCOMPOSTO" DES="Composto da ODP" TIP="L" NUMT="1" NUMC="5" PAGB="2048" CPRD="1" EXP="1" GRUP="1" VDAT="19052023" VORA="13:15:28"/>
+	</FILE>
+	<FIELD>
+		<BCDBFIELD ID="1604923" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QCOMPOSTO" NPR="1" NOMC="IDD" NOMD="IdDocumento" DES="Identificatore Documento" TID="L" LUD="4" CIF="9"/>
+		<BCDBFIELD ID="1604924" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QCOMPOSTO" NPR="2" NOMC="NRG" NOMD="NumRegistraz" DES="Numero Registrazione" TID="L" LUD="4" CIF="7"/>
+		<BCDBFIELD ID="1604925" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QCOMPOSTO" NPR="3" NOMC="TESTO" NOMD="DesEstesa" DES="Descrizione Estesa" TID="B"/>
+		<BCDBFIELD ID="1604926" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QCOMPOSTO" NPR="4" NOMC="TPRC" NOMD="TipoRiga" DES="Tipo Riga" TID="I" LUD="2" CIF="3"/>
+		<BCDBFIELD ID="1604927" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QCOMPOSTO" NPR="5" NOMC="NDOC" NOMD="NumDocumento" DES="Numero Documento" TID="C" LUD="15"/>
+	</FIELD>
+	<EXTEN>
+		<BCDBEXTEN ID="521283" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QCOMPOSTO" TDATO="1" EXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Report&gt;
+	&lt;Query Name=&quot;Composto da ODP&quot; Version=&quot;19/05/2023 13:15:28&quot; TopCount=&quot;-1&quot; Nolock=&quot;1&quot;&gt;
+		&lt;Dictionary&gt;
+			&lt;DDTable Dfx=&quot;EDMIR&quot; Rtm=&quot;1&quot; Version=&quot;02/08/2022 14:26:34&quot; Dictionary=&quot;ES&quot;/&gt;
+			&lt;DDTable Dfx=&quot;EDMIT&quot; Rtm=&quot;1&quot; Version=&quot;18/06/2014 13:43:44&quot; Dictionary=&quot;ES&quot;/&gt;
+		&lt;/Dictionary&gt;
+		&lt;Tables&gt;
+			&lt;Table Dfx=&quot;EDMIR&quot; Dictionary=&quot;ES&quot;/&gt;
+			&lt;Table Dfx=&quot;EDMIT&quot; Dictionary=&quot;ES&quot;&gt;
+				&lt;ParentRelation Name=&quot;EDMIR_EDMIT&quot; ParentTableDfx=&quot;EDMIR&quot; JoinType=&quot;LEFT&quot; RelationType=&quot;2&quot;&gt;
+					&lt;RelationField FieldName=&quot;IDD&quot; ParentFieldName=&quot;IDD&quot;/&gt;
+				&lt;/ParentRelation&gt;
+			&lt;/Table&gt;
+		&lt;/Tables&gt;
+		&lt;Fields&gt;
+			&lt;Field Pos=&quot;1&quot; TableDfx=&quot;EDMIR&quot; Name=&quot;IDD&quot; Alias=&quot;IdDocumento&quot; Output=&quot;1&quot; RelationPath=&quot;EDMIR&quot; Label=&quot;Identificatore Documento&quot; Code=&quot;102&quot;/&gt;
+			&lt;Field Pos=&quot;2&quot; TableDfx=&quot;EDMIR&quot; Name=&quot;NRG&quot; Alias=&quot;NumRegistraz&quot; Output=&quot;1&quot; RelationPath=&quot;EDMIR&quot; Label=&quot;Numero Registrazione&quot; Code=&quot;103&quot;/&gt;
+			&lt;Field Pos=&quot;3&quot; TableDfx=&quot;EDMIR&quot; Name=&quot;TESTO&quot; Alias=&quot;DesEstesa&quot; Output=&quot;1&quot; RelationPath=&quot;EDMIR&quot; Label=&quot;Descrizione Estesa&quot; Code=&quot;104&quot;/&gt;
+			&lt;Field Pos=&quot;4&quot; TableDfx=&quot;EDMIR&quot; Name=&quot;TPRC&quot; Alias=&quot;TipoRiga&quot; Output=&quot;1&quot; RelationPath=&quot;EDMIR&quot; Label=&quot;Tipo Riga&quot; Code=&quot;107&quot;/&gt;
+			&lt;Field Pos=&quot;5&quot; TableDfx=&quot;EDMIT&quot; Name=&quot;NDOC&quot; Alias=&quot;NumDocumento&quot; Output=&quot;1&quot; RelationPath=&quot;EDMIR;EDMIR_EDMIT&quot; Label=&quot;Numero Documento&quot; Code=&quot;108&quot;/&gt;
+			&lt;Field Pos=&quot;6&quot; Alias=&quot;DBGruppoDa&quot; Label=&quot;Gruppo archivio Da&quot; Type=&quot;1&quot; IdFilterOrigin=&quot;1&quot; Code=&quot;901&quot;/&gt;
+			&lt;Field Pos=&quot;7&quot; Alias=&quot;DBGruppoA&quot; Label=&quot;Gruppo archivio A&quot; Type=&quot;2&quot; IdFilterOrigin=&quot;1&quot; Code=&quot;902&quot;/&gt;
+			&lt;Field Pos=&quot;8&quot; Alias=&quot;NumDocumentoDa&quot; Label=&quot;Numero Documento Da&quot; Type=&quot;1&quot; IdFilterOrigin=&quot;2&quot; Code=&quot;903&quot;/&gt;
+			&lt;Field Pos=&quot;9&quot; Alias=&quot;NumDocumentoA&quot; Label=&quot;Numero Documento A&quot; Type=&quot;2&quot; IdFilterOrigin=&quot;2&quot; Code=&quot;904&quot;/&gt;
+			&lt;Field Pos=&quot;10&quot; Alias=&quot;TipoRigaDa&quot; Label=&quot;Tipo Riga Da&quot; Type=&quot;1&quot; IdFilterOrigin=&quot;3&quot; Code=&quot;905&quot;/&gt;
+			&lt;Field Pos=&quot;11&quot; Alias=&quot;TipoRigaA&quot; Label=&quot;Tipo Riga A&quot; Type=&quot;2&quot; IdFilterOrigin=&quot;3&quot; Code=&quot;906&quot;/&gt;
+			&lt;Field Pos=&quot;12&quot; Alias=&quot;IdDocumentoDa&quot; Label=&quot;Identificatore Documento Da&quot; Type=&quot;1&quot; IdFilterOrigin=&quot;4&quot; Code=&quot;907&quot;/&gt;
+			&lt;Field Pos=&quot;13&quot; Alias=&quot;IdDocumentoA&quot; Label=&quot;Identificatore Documento A&quot; Type=&quot;2&quot; IdFilterOrigin=&quot;4&quot; Code=&quot;908&quot;/&gt;
+		&lt;/Fields&gt;
+		&lt;Filters&gt;
+			&lt;CellFilter Pos=&quot;1&quot; TableDfx=&quot;EDMIR&quot; Name=&quot;TPRC&quot; Alias=&quot;TipoRiga&quot; Tid=&quot;I&quot; Lud=&quot;2&quot; Cif=&quot;3&quot; Label=&quot;Tipo Riga&quot; Condition=&quot;1&quot; Runtime=&quot;1&quot; RtmCondition=&quot;1&quot; Operator=&quot;AND&quot; IdFilter=&quot;3&quot; Value1I=&quot;10&quot; Value2I=&quot;999&quot;/&gt;
+			&lt;CellFilter Pos=&quot;2&quot; TableDfx=&quot;EDMIR&quot; Name=&quot;IDD&quot; Alias=&quot;IdDocumento&quot; Tid=&quot;L&quot; Lud=&quot;4&quot; Cif=&quot;9&quot; Label=&quot;Identificatore Documento&quot; Condition=&quot;1&quot; Runtime=&quot;1&quot; RtmCondition=&quot;1&quot; Operator=&quot;AND&quot; IdFilter=&quot;4&quot; Value2L=&quot;999999999&quot;/&gt;
+		&lt;/Filters&gt;
+	&lt;/Query&gt;
+	&lt;Information Desc=&quot;Composto da ODP&quot; DescExt=&quot;Restituisce il composto e la descrizione dato il numero documento&quot; Context=&quot;4&quot; Output=&quot;5&quot; Version=&quot;2&quot; AbilityTree=&quot;1&quot; Preview=&quot;1&quot;/&gt;
+	&lt;FieldsQuery&gt;
+		&lt;FieldQuery TableDfx=&quot;EDMIR&quot; TableTrk=&quot;DMR&quot; Name=&quot;IDD&quot; Alias=&quot;IdDocumento&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EDMIR&quot; TableTrk=&quot;DMR&quot; Name=&quot;NRG&quot; Alias=&quot;NumRegistraz&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EDMIR&quot; TableTrk=&quot;DMR&quot; Name=&quot;TESTO&quot; Alias=&quot;DesEstesa&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EDMIR&quot; TableTrk=&quot;DMR&quot; Name=&quot;TPRC&quot; Alias=&quot;TipoRiga&quot; Preview=&quot;1&quot;/&gt;
+		&lt;FieldQuery TableDfx=&quot;EDMIT&quot; TableTrk=&quot;DMT&quot; Name=&quot;NDOC&quot; Alias=&quot;NumDocumento&quot; Preview=&quot;1&quot;/&gt;
+	&lt;/FieldsQuery&gt;
+&lt;/Report&gt;"/>
+		<BCDBEXTEN ID="521284" DIZ="TAB_ESTERNE" VERDAT="1042015" VERORA="1100" DFX="QCOMPOSTO" TDATO="5" EXT="Restituisce il composto e la descrizione dato il numero documento"/>
+	</EXTEN>
+</BC_DA_ANAGR_TAB>
+

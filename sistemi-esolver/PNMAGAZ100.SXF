@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Report>
+	<Form>
+		<Information Target="GRAFICO" Descr="PRIMA NOTA MAGAZZINO, carico secchi per la produzione" Type="TCP" Dictionary="EM100" Orient="Verticale" Ver="1.0.0" WsOp="W1" Date="2023-05-20" Time="22:07">
+			<Size H="16416" W="11628" TraspBck="1" ColBck="RGB(255,255,255)"/>
+			<DrawGrid PX="4.99" PY="4.99" PrecX="1.01" PrecY="1.01"/>
+		</Information>
+		<Defaults>
+			<StyleRect>
+				<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+			</StyleRect>
+			<StyleLabel>
+				<Frame TraspBck="1"/>
+				<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+			</StyleLabel>
+			<StyleVariable>
+				<Frame TraspBck="1"/>
+				<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+			</StyleVariable>
+		</Defaults>
+		<UserDictionary>
+			<Class>
+				<UserVariable Pos="1" Cod="1" Descr="Riferimento" Tid="1" EditType="3" Len="50" Format="1">
+					<Format Len="50"/>
+					<Exprs>
+						<CondExprs Formula="{@28}+{ºSPACE$}(1)+&apos;Reg.&apos;+{ºSPACE$}(1)+{ºLEFT$}({ºSTR$}({@30}),5)+&apos;.&apos;+{ºREPLACE$}({ºSTR$}({@31}),&apos; &apos;,&apos;&apos;)+&apos;.&apos;+{ºREPLACE$}({ºSTR$}({@32}),&apos; &apos;,&apos;&apos;)+{ºSPACE$}(1)+&apos;del&apos;+{ºSPACE$}(1)+{ºFNEDDAT6$}({@29})"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="2" Descr="CapComuneProvincia" Tid="1" EditType="3" Len="100" Format="1">
+					<Format Len="100"/>
+					<Exprs>
+						<CondExprs Formula="{@7}+{ºSPACE$}(1)+{@8}+{ºSPACE$}(1)+&apos;(&apos;+{@9}+&apos;)&apos;"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="3" Descr="Telefoni" Tid="1" EditType="3" Len="100" Format="1">
+					<Format Len="100"/>
+					<Exprs>
+						<CondExprs Formula="{@10}+{ºSPACE$}(1)+&apos;-&apos;+{ºSPACE$}(1)+{@11}" Cond="{@10}&lt;&gt;&apos;&apos; AND {@11}&lt;&gt;&apos;&apos;"/>
+						<CondExprs Formula="{@10}" Cond="{@10}&lt;&gt;&apos;&apos; AND {@11}=&apos;&apos;"/>
+						<CondExprs Formula="{@11}" Cond="{@10}=&apos;&apos; AND {@11}&lt;&gt;&apos;&apos;"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="5" Descr="Qta" Tid="1" EditType="1" Len="11" NumDecs="2" ValueDefault="0">
+					<Exprs>
+						<CondExprs Formula="{@121}"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="6" Descr="QtaComp" Tid="1" EditType="1" Len="11" NumDecs="2" ValueDefault="0">
+					<Exprs>
+						<CondExprs Formula="{@181}"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="7" Descr="CheckUdM" Tid="1" EditType="3" Len="10" SectionCalc="2.DATI GENERALI RIGA.1" Format="1">
+					<Format Len="10"/>
+					<Exprs>
+						<CondExprs Formula="{@120}" Cond="{$7}=&apos;&apos; OR {$7}={@120}"/>
+						<CondExprs Formula="&apos;UDM_VARIA&apos;" Cond="{$7}&lt;&gt;&apos;&apos; AND {$7}&lt;&gt;{@120}"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="8" Descr="Ordine di Produzione" Tid="1" EditType="3" Len="30" Format="1">
+					<Format Len="30"/>
+					<Exprs>
+						<CondExprs Formula="&apos;202&apos;+{ºLEFT$}({@37},1)+&apos;.&apos;+&apos;1&apos;+&apos;.&apos;+{ºSTR$}({ºVAL}({ºMID$}({@37},2,4)))+{ºSPACE$}(1)+&apos;riga&apos;+{ºSPACE$}(1)+{ºSTR$}({ºVAL}({ºMID$}({@37},6,2)))"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="15" Descr="Descrizione estesa2" Tid="1" EditType="3" Len="30" SectionCalc="1.0.0" Format="1">
+					<Format Len="30"/>
+					<Exprs>
+						<CondExprs Formula="{$12}"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="16" Descr="Identificatore Documento" Tid="1" EditType="1" Len="9" SectionCalc="1.0.0">
+					<Exprs>
+						<CondExprs Formula="{|IdDocumento|}" Descr="Da query di sezione QCOMPOSTO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="17" Descr="Numero Registrazione" Tid="1" EditType="1" Len="7" SectionCalc="1.0.0">
+					<Exprs>
+						<CondExprs Formula="{|NumRegistraz|}" Descr="Da query di sezione QCOMPOSTO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="18" Descr="Descrizione Estesa" Tid="1" EditType="3" FmtWrap="1" SectionCalc="1.0.0" Format="1">
+					<Format/>
+					<Exprs>
+						<CondExprs Formula="{|DesEstesa|}" Descr="Da query di sezione QCOMPOSTO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="19" Descr="Tipo Riga" Tid="1" EditType="1" Len="3" SectionCalc="1.0.0">
+					<Exprs>
+						<CondExprs Formula="{|TipoRiga|}" Descr="Da query di sezione QCOMPOSTO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="20" Descr="Numero Documento" Tid="1" EditType="3" Len="15" SectionCalc="1.0.0" Format="1">
+					<Format Len="15"/>
+					<Exprs>
+						<CondExprs Formula="{|NumDocumento|}" Descr="Da query di sezione QCOMPOSTO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="21" Descr="Codice Articolo" Tid="1" EditType="3" Len="25" SectionCalc="2.DATI GENERALI RIGA.1" Format="1">
+					<Format Len="25"/>
+					<Exprs>
+						<CondExprs Formula="{|CodArt|}" Descr="Da query di sezione QARTICOLO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="22" Descr="Tipo Anagrafica (1-Articolo Mag" Tid="1" EditType="1" Len="2" SectionCalc="2.DATI GENERALI RIGA.1">
+					<Exprs>
+						<CondExprs Formula="{|TipoAnagr|}" Descr="Da query di sezione QARTICOLO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="23" Descr="Descrizione Articolo" Tid="1" EditType="3" Len="50" SectionCalc="2.DATI GENERALI RIGA.1" Format="1">
+					<Format Len="50"/>
+					<Exprs>
+						<CondExprs Formula="{|DesArt|}" Descr="Da query di sezione QARTICOLO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="24" Descr="Codice Area Magazzino Scarico" Tid="1" EditType="3" Len="15" SectionCalc="2.DATI GENERALI RIGA.1" Format="1">
+					<Format Len="15"/>
+					<Exprs>
+						<CondExprs Formula="{|CodAreaMagScarico|}" Descr="Da query di sezione QARTICOLO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="25" Descr="Codice Area Magazzino Stoccaggio" Tid="1" EditType="3" Len="15" SectionCalc="2.DATI GENERALI RIGA.1" Format="1">
+					<Format Len="15"/>
+					<Exprs>
+						<CondExprs Formula="{|CodAreaMagStoccaggio|}" Descr="Da query di sezione QARTICOLO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="26" Descr="Descrizione Estesa" Tid="1" EditType="3" FmtWrap="1" SectionCalc="2.DATI GENERALI RIGA.1" Format="1">
+					<Format/>
+					<Exprs>
+						<CondExprs Formula="{|DesEstesa|}" Descr="Da query di sezione QARTICOLO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="27" Descr="Magazzino: Codice Magazzino Scarico Componenti" Tid="1" EditType="3" Len="4" SectionCalc="2.DATI GENERALI RIGA.1" Format="1">
+					<Format Len="4"/>
+					<Exprs>
+						<CondExprs Formula="{|MagCodMagScarico|}" Descr="Da query di sezione QARTICOLO"/>
+					</Exprs>
+				</UserVariable>
+				<UserVariable Pos="1" Cod="28" Descr="Magazzino: Codice Magazzino Stoccaggio" Tid="1" EditType="3" Len="4" SectionCalc="2.DATI GENERALI RIGA.1" Format="1">
+					<Format Len="4"/>
+					<Exprs>
+						<CondExprs Formula="{|MagCodMagStoccaggio|}" Descr="Da query di sezione QARTICOLO"/>
+					</Exprs>
+				</UserVariable>
+			</Class>
+		</UserDictionary>
+		<Styles/>
+		<Background>
+			<Image Name="LOGOEUROPA.jpg" X="342" Y="285" W="2337" H="798"/>
+			<Rect Y="2394" W="1482" H="13110" UseDef="1" XRoundness="320" YRoundness="320"/>
+			<Rect X="1482" Y="2394" W="1938" H="13110" UseDef="1" XRoundness="320" YRoundness="320"/>
+			<Rect X="3420" Y="2394" W="3306" H="13110" UseDef="1" XRoundness="320" YRoundness="320"/>
+			<Rect X="6726" Y="2394" W="399" H="13110" UseDef="1" XRoundness="320" YRoundness="320"/>
+			<Rect X="7125" Y="2394" W="855" H="13110" UseDef="1" XRoundness="320" YRoundness="320"/>
+			<Rect X="7125" Y="2394" W="855" H="13110" UseDef="1" XRoundness="320" YRoundness="320"/>
+			<Line Y1="3192" X2="11628" Y2="3192" UseDef="1"/>
+			<Rect Y="15504" W="11628" H="912" UseDef="1" XRoundness="320" YRoundness="320"/>
+		</Background>
+		<Sections>
+			<Section Id="1.0.0" Descr="AREA TESTATA" Query="1" QueryName="QCOMPOSTO" H="2508" FixPos="1">
+				<Params>
+					<Param Id="1" Descr="TipoRiga@3" Type="1" ValueFrom="10" ValueTo="999"/>
+					<Param Id="2" Descr="IdDocumento@4" Type="1" ValueFrom="{@1563}" ValueTo="999999999"/>
+				</Params>
+				<Rect W="5814" H="1254" UseDef="1"/>
+				<Rect X="5814" W="5814" H="1197" UseDef="1"/>
+				<Label Text="Luogo di consegna" X="6897" Y="114" W="741" H="399" FmtWrap="1">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Variable Cod="15" X="7809" Y="114" W="2907" H="171" UseDef="1" UseDict="1"/>
+				<Variable Cod="18" X="7809" Y="342" W="2052" H="171" UseDef="1" UseDict="1"/>
+				<Label Text="Tel." X="6840" Y="570" W="399" H="171">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Variable Cod="7" X="7638" Y="570" W="855" UseDef="1" UseDict="1"/>
+				<UserVariable3 Cod="3" UseDef="1" UseDict="1" X="7809" Y="570" W="3705" H="171"/>
+				<Variable Cod="8" X="8493" Y="570" W="2565" UseDef="1" UseDict="1"/>
+				<Variable Cod="9" X="11058" Y="570" W="285" UseDef="1" UseDict="1"/>
+				<UserVariable3 Cod="1" UseDef="1" UseDict="1" X="2850" Y="912" W="2736" H="171"/>
+				<Variable Cod="1563" X="5985" Y="912" W="741" H="171" UseDef="1" UseDict="1"/>
+				<Variable Cod="C11" X="9975" Y="969" W="1539" H="228" UseDict="1">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Variable>
+				<Variable Cod="12" X="8208" Y="1140" W="1425" UseDef="1" UseDict="1"/>
+				<Rect Y="1197" W="11628" H="342">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" ColBck="RGB(220,220,220)"/>
+						<Font ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1"/>
+					</Style>
+				</Rect>
+				<Label Text="Carico secchi - Ordine di Produzione n." X="114" Y="1197" W="5586" H="285">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="12" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Variable Cod="37" X="4161" Y="1197" W="2166" H="285">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="12" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Format Len="15"/>
+				</Variable>
+				<Rect Y="1539" W="11628" H="399" UseDef="1"/>
+				<Label Text="Prodotto Finito" X="114" Y="1653" W="1311" H="228">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+				<UserVariable3 Cod="18" X="1539" Y="1653" W="9975" H="228" FmtWrap="1">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="12" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Format/>
+					<ExtFormat/>
+				</UserVariable3>
+				<Label Text="Articolo" Y="1938" W="1482" H="456">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Lotto" X="1482" Y="1938" W="1938" H="456">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Descrizione" X="3420" Y="1938" W="3306" H="456">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="UdM" X="6726" Y="1938" W="399" H="456">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Qtà" X="7125" Y="1938" W="855" H="456">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" VertAlign="2"/>
+					</Style>
+				</Label>
+				<Label Text="Note" X="7980" Y="1938" W="3648" H="456">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="2" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+				</Label>
+			</Section>
+			<Section Id="2.0.0" Descr="AREA CORPO" Y="2508" H="12996" FixPos="1"/>
+			<Section Id="2.DATI GENERALI RIGA.1" Descr="Corpo - Riga 1" Query="1" QueryName="QARTICOLO" Y="2508" H="684">
+				<Params>
+					<Param Id="1" Descr="CodArt@1" Type="1" ValueFrom="{@91}" ValueTo="&apos;zzzzzzzzzzzzzzzzzzzzzzzzz&apos;"/>
+					<Param Id="2" Descr="TipoAnagr@2" Type="1" ValueFrom="1" ValueTo="6"/>
+				</Params>
+				<Variable Cod="91" X="57" Y="2508" W="1368" H="228" UseDef="1" UseDict="1"/>
+				<Variable Cod="198" X="1539" Y="2508" W="1824" H="228" UseDef="1" UseDict="1"/>
+				<Variable Cod="93" X="3477" Y="2508" W="3249" H="228" UseDef="1" UseDict="1"/>
+				<Variable Cod="120" X="6783" Y="2508" W="285" H="228" UseDef="1" UseDict="1"/>
+				<Variable Cod="121" X="7125" Y="2508" W="855" H="228" UseDef="1" UseDict="1"/>
+				<UserVariable3 Cod="26" UseDef="1" UseDict="1" X="3477" Y="2793" W="3192" H="228"/>
+			</Section>
+			<Section Id="3.0.0" Descr="AREA PIEDE" Y="15504" H="912" FixPos="1">
+				<Rect X="57" Y="15618" W="3192" H="684" Heading="L&apos;operatore di magazzino">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" ColBck="RGB(220,220,220)"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+				</Rect>
+				<Rect X="3420" Y="15618" W="3192" H="684" Heading="Data e ora di stampa">
+					<Style>
+						<Frame Dim="1" Col="RGB(0,0,0)" ColBck="RGB(220,220,220)"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1"/>
+					</Style>
+				</Rect>
+				<Label Text="** Segue **" X="10944" Y="15618" W="570" H="228">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="6" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Cond CondExpr="{UltimaPagina}&lt;&gt;1"/>
+				</Label>
+				<UserVariable3 Cod="7" UseDict="1" X="11172" Y="15618" W="285" H="228">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" Bold="1" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Cond CondExpr="{UltimaPagina}=1 AND {$7}&lt;&gt;&apos;UDM_VARIA&apos;"/>
+				</UserVariable3>
+				<Variable Cod="220" X="114" Y="15789" W="1254" H="171" UseDef="1" UseDict="1"/>
+				<Variable Cod="222" X="1653" Y="15789" W="1596" H="171">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="3" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Format Len="20"/>
+				</Variable>
+				<Variable Cod="C5" X="3648" Y="15789" W="1140" H="171">
+					<Style>
+						<Frame TraspBck="1"/>
+						<Font Name="Arial" Size="8" ColBck="RGB(255, 255, 255)" ColFor="RGB(0,0,0)" Align="1" PitchFamily="34" OutPrecision="3" ClipPrecision="2" Quality="1" VertAlign="2"/>
+					</Style>
+					<Format Len="10" SignType="2" EditType="4"/>
+				</Variable>
+				<Variable Cod="C6" X="3648" Y="16017" W="741" H="171" UseDef="1" UseDict="1"/>
+			</Section>
+		</Sections>
+	</Form>
+</Report>
+
