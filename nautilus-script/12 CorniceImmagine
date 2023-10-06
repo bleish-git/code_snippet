@@ -1,0 +1,34 @@
+#!/bin/sh
+# Questo Script modifica l'immagine in ingresso, aggiungendo una cornice sfumata
+# dipendenze: imagemagick, bc
+#
+# 2010 - ver 0.1 - bleish.wordpress.com
+
+PERCORSO=`pwd`
+[ -n "$PERCORSO" ] && cd "$PERCORSO"
+
+if [ $# -eq 0 ]; then
+	zenity --title="CorniceImmagine" --error --title="Attenzione"\
+ --text="Seleziona un file."
+        exit 1
+fi
+
+
+h=`identify -format '%h' "$1"`
+w=`identify -format '%w' "$1"`
+h1=`echo $h-5 | bc`
+w1=`echo $w-5 | bc`
+
+stringa="rectangle 5,5 $w1,$h1"
+
+TEMPFILE=`tempfile`
+MASK=`tempfile`
+convert "$1" "$TEMPFILE.png"
+convert -size ${w}x${h} xc: -draw "$stringa" -blur 30x3 -negate "$MASK.png"
+convert "$TEMPFILE.png" "$MASK.png" +matte -compose CopyOpacity -composite "c$1.png"
+
+rm -f "$MASK.png"
+rm -f "$TEMPFILE.png"
+rm -f "$TEMPFILE"
+rm -f "$MASK"
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Author: bleish
+#
+# smontare la cartella samba condivisa
+
+sudo umount /home/bleish/Scrivania/Decrypt/ && zenity --info --title="SMBOff" --text="Supporto samba disinserito." 
+
+exit 0

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+# $1="" se non è stato selezionato nessun file nella cartella cliccata, allora la cartella di lavoro è quella cliccata
+# altrimenti prendiamo come cartella di lavoro quella restituita proprio da $1
+
+if [[ "$1" != "" ]]
+then 
+	cd "$1"
+fi   
+
+gnome-terminal --geometry=60x25 -x scanimage --mode Gray --resolution 300 --compression JPEG --jpeg-quality 10 --batch-scan=yes --batch='out%0.3d.jpg' &
+
+

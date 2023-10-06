@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+#	Verifica della firma e visulizzazione del certificato
+#
+#
+#   dipende da poppler-utils
+#
+PERCORSO=`pwd`
+[ -n "$PERCORSO" ] && cd "$PERCORSO"
+
+
+
+if [ $# -eq 0 ]; then
+	zenity --title="PDF Sign Viewer" --error --title="Attenzione"  --text="Seleziona un file."
+        exit 1
+fi
+
+t=`pdfsig "$1"`
+
+
+if [ $? -eq	0 ]; then
+	zenity --title="PDF Sign Viewer"  --info --text="$t" 
+else
+	zenity --title="PDF Sign Viewer" --error --title="Attenzione" --text="Errore nell'apertura del file o file non firmato"
+fi	
+

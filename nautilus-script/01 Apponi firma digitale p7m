@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+#	Appone firma digitale in formato CAdES
+#
+#
+#
+PERCORSO=`pwd`
+[ -n "$PERCORSO" ] && cd "$PERCORSO"
+
+if [ $# -eq 0 ]; then
+	zenity --title="P7M Sign" --error --title="Attenzione"\
+ --text="Seleziona un file."
+        exit 1
+fi
+
+#t=$(tempfile)
+t="$1.p7m"
+
+OPENSSL_CONF=/home/bleish/Scrivania/openssl-1.0.1h/apps/openssl.cnf 
+
+export OPENSSL_CONF 
+
+/home/bleish/Scrivania/openssl-1.0.1h/apps/openssl cms -nosmimecap -md sha256 -nodetach -binary -cades -stream -outform DER -sign -signer /home/bleish/Scrivania/openssl-1.0.1h/certificato1.pem -inkey 445333 -keyform engine -in $1 -out "$t" -engine pkcs11 
+
+if [ $? -eq	0 ]; then
+	gcr-viewer "$t"
+else
+	zenity --title="P7M viewer" --error --title="Attenzione"\
+ --text="Errore nella firma del file"
+fi	
+
+

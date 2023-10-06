@@ -1,0 +1,4 @@
+#!/bin/bash
+#Find the default printer, or set printer with a literal string e.g. PRINTER="HL2140"
+PRINTER=`lpstat -d | awk '{print $NF}'`              
+scanimage --mode Gray --format tiff --resolution 150 | lpr -P$PRINTER -o fitplot

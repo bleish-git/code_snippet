@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cp $HOME/.aMule/nodes\ \(copia\).dat  $HOME/.aMule/nodes.dat && \
+cp $HOME/.aMule/amule\ \(copia\).conf $HOME/.aMule/amule.conf && \
+zenity --info --text="aMule Aggiornato con successo."
+
+
+

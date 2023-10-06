@@ -1,0 +1,8 @@
+#!/bin/sh
+
+wget http://users.tkk.fi/~otsaloma/art/firefox-form-widgets.tar.gz
+tar -xvzf firefox-form-widgets.tar.gz
+sudo cp /usr/lib/firefox/res/forms.css /usr/lib/firefox/res/forms.css.bak
+cat firefox-form-widgets/res/forms-extra.css | sudo tee --append /usr/lib/firefox/res/forms.css > /dev/null
+sudo cp -r firefox-form-widgets/res/form-widgets /usr/lib/firefox/res
+rm -rf firefox-form-widgets*

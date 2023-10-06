@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+# $1="" se non è stato selezionato nessun file nella cartella cliccata, allora la cartella di lavoro è quella cliccata
+# altrimenti prendiamo come cartella di lavoro quella restituita proprio da $1
+
+if [[ "$1" != "" ]]
+then 
+	cd "$1"
+fi   
+
+gnome-terminal --geometry=60x25 -x scanimage -p --mode Gray --resolution 150 --format tiff --batch-scan=yes --batch='outscan%0.3d' 
+
+PACK=out
+tmpdir=`pwd`
+[ -e "$PACK.pdf" ] && PACK=`mktemp -u --tmpdir=$tmpdir out-XXX` 
+
+convert outscan* $PACK.pdf 
+
+rm outscan*
+
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudotool=sudo
+
+$sudotool nemo --no-desktop $1 &

@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+#	Verifica della firma e visulizzazione del certificato
+#
+#
+#
+PERCORSO=`pwd`
+[ -n "$PERCORSO" ] && cd "$PERCORSO"
+
+if [ $# -eq 0 ]; then
+	zenity --title="P7M viewer" --error --title="Attenzione"\
+ --text="Seleziona un file."
+        exit 1
+fi
+
+t=$(tempfile)
+
+openssl pkcs7 -inform DER -in "$1" -print_certs -out "$t"
+
+if [ $? -eq	0 ]; then
+	gcr-viewer "$t"
+else
+	zenity --title="P7M viewer" --error --title="Attenzione"\
+ --text="Errore nell'apertura del file"
+fi	
+
+rm -f "$t"

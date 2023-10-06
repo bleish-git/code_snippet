@@ -1,0 +1,235 @@
+#!/bin/bash
+#
+# Autore: Bleish bleish@gmail.com [bleish AT gmail DOT com]
+# Licenza: GPL 2 or later
+#
+# Dipendenze:
+#		zenity
+#		pdftk
+#		a2ps, iconv
+#
+&>/dev/tty1
+exec > /dev/tty1
+set -x
+EDITOR=xed
+VISUAL="xreader"
+#VISUAL=atril
+##main
+#PERCORSO="`echo $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS| sed "s&^file://&&"`"
+#cd `dirname $PERCORSO`
+
+#zenity --warning --text "`dirname $PERCORSO`"
+PERCORSO=`pwd`
+[ -n "$PERCORSO" ] && cd "$PERCORSO"
+
+if [ $# -eq 0 ]; then
+	zenity --title="PDFJoin" --error --title="Attenzione"\
+ --text="Seleziona almeno due file."
+        exit 1
+fi
+
+filesall=""
+onlyname=""
+
+number=1
+filetempbase=`mktemp -d`
+textnumber=""
+
+
+while [ $# -gt 0 ]
+	do
+		#files=echo $1 | sed 's/ /\?/g'`
+		#filesall="${filesall} $files"
+		#textnumber=${filetempbase}/`printf "%03d" $number`
+		#cp "$1" ${textnumber}.pdf
+		TT="`printf "%03d" $number`##CC##`basename "$1" .pdf`"
+		cp "$1" ${filetempbase}/"$TT"
+		#filesall=${filesall}\${textnumber}.pdf
+		#nometemp="${filetempbase}/`basename "$1"`"
+		#filesall="${filesall} \n \"${nometemp}\""
+		(( number = number + 1 ))
+		shift
+	done
+	
+filesall=`find ${filetempbase}/* -printf "\"%p\"" | sort --version-sort`
+onlyname=`find ${filetempbase}/* -printf "\"%f\"\n" | sort --version-sort | sed 's/[0-9][0-9][0-9]##CC##//g'`
+#zenity  --info --title "Percorso completo dei file da unire"  --text="`echo -e "-$filetempbase- \n$filesall"`" --no-wrap
+zenity  --question --title "Elenco dei file da unire. Procedere ?"  --text="`echo -e "$onlyname"`" --no-wrap
+
+
+if [[ $? = 0 ]] # la variabile $? memorizza il valore restituito
+then
+	zenity  --question --title="Opzione Indice" --text="Per i file selezionati produrre un indice?"
+	if [[ $? = 0 ]]
+	then 
+		RISPOSTA=`zenity --title "Opzioni per l'indice" --text "Scegliere un'opzione" --list --radiolist \
+			--width=450 --height=300 --column " " --column "Opzioni" \
+			False "Utilizzare un file esterno strutturato per i titoli, numeri pagina automatici"\
+			False "Utilizzare un file pdf pronto"  \
+			False "Utilizzare un file editabile pronto" \
+			True "Utilizzare i nomi dei file, numeri pagina automatici" \
+			False "Nessun indice"`
+		
+		#echo $RISPOSTA
+		
+		case "$RISPOSTA" in
+			"Utilizzare un file esterno strutturato per i titoli, numeri pagina automatici" )
+				TEMPFILE=`tempfile -d $PERCORSO`				
+				
+				FILEOP=`zenity --file-selection --title="Seleziona il file strutturato"`
+				
+				PAGE=2
+				CONT=1 # conta il numero di file da unire
+				
+				for TF in $(find ${filetempbase}/* -printf "%p;" | sort --version-sort)	
+				do
+					ARR[CONT]=$PAGE
+					
+					PAGET=`pdftk "${TF}" dump_data | grep NumberOfPages | sed 's/[^0-9]//g'`
+
+					(( PAGE = PAGE + PAGET ))
+					(( CONT = CONT + 1 ))
+					
+				done
+				
+				
+				
+				IND=1
+				while read RIGA
+ 				do	
+ 					PAGET=`pdftk "${TF}" dump_data | grep NumberOfPages | sed 's/[^0-9]//g'`
+ 					
+ 					[[ `echo "${RIGA}" | grep '*'` ]] && RIGA="`echo "${RIGA}" | sed 's/\*//g'`, ${ARR[IND]}" && \
+ 						(( IND = IND + 1 ))
+ 					
+ 					echo "${RIGA}" >> $TEMPFILE
+					
+				done < $FILEOP
+				
+				unset ARR
+				
+				zenity  --question --title="Opzione Indice" --text="Editare l'indice autogenerato?"
+				if [[ $? = 0 ]]
+				then 
+					
+					$EDITOR $TEMPFILE &
+					zenity  --info --title "In attesa"  --text="Una volta finita l'elaborazione premere OK"
+				fi
+					
+				iconv -t LATIN9//TRANSLIT $TEMPFILE | a2ps -1 -M A4 -f 14 --borders=no -B -o ${TEMPFILE}.ps 
+					
+				ps2pdf ${TEMPFILE}.ps  ${TEMPFILE}.pdf
+				cp "${TEMPFILE}.pdf" "${filetempbase}/000$(basename $TEMPFILE).pdf"
+				
+				rm -f $TEMPFILE
+				rm -f ${TEMPFILE}.ps
+				
+				IFS=${TEMPIFS}
+			;;
+			
+			"Utilizzare un file pdf pronto" )
+				FILEOP=`zenity --file-selection --title="Seleziona il file indice di tipo pdf." | sed 's/ /\?/g'`
+				while [[ ! `file $FILEOP | grep -i pdf` ]] 
+				do
+					zenity --error --text="Utilizzare solo file pdf"
+					FILEOP=`zenity --file-selection --title="Seleziona il file indice di tipo pdf." | sed 's/ /\?/g'`
+				done
+				
+				cp "${FILEOP}" "${filetempbase}/000$(basename $FILEOP)"
+				
+				
+			;;
+			
+			"Utilizzare un file editabile pronto" )
+				TEMPFILE=`tempfile -d $PERCORSO`
+				FILEOP=`zenity --file-selection --title="Seleziona il file indice"`
+				
+				zenity  --question --title="Opzione Indice" --text="Editare l'indice?"
+				if [[ $? = 0 ]]
+				then 
+					$EDITOR $TEMPFILE &
+					#wait $P
+					zenity  --info --title "In attesa"  --text="Una volta finita l'elaborazione premere OK"
+				fi
+				
+				iconv -t LATIN9//TRANSLIT  "$FILEOP" | a2ps -1 -M A4 -f 14 --borders=no -B -o ${TEMPFILE}.ps	
+				
+				ps2pdf ${TEMPFILE}.ps  ${TEMPFILE}.pdf
+				cp "${TEMPFILE}.pdf" "${filetempbase}/000$(basename $TEMPFILE).pdf"
+				
+				rm -f "$FILEOP"
+				rm -f ${TEMPFILE}.ps
+			
+	
+			;;
+
+			"Utilizzare i nomi dei file, numeri pagina automatici" )
+				TEMPFILE=`tempfile -d $PERCORSO`
+				#echo -e "$onlyname" | sed 's/.pdf//g' | a2ps -1 -M A4 -f 16 --borders=no -B -o ${TEMPFILE}.ps	
+				echo -e "\n\n\n" >> $TEMPFILE				
+
+				#STRI=`zenity --entry --text="Inserisci autore e titolo:" `
+				
+				#echo -e "${STRI}\n\n\n ">> $TEMPFILE				
+
+				TEMPIFS=${IFS}
+				IFS=";"
+				
+				PAGE=2			
+				for TF in $(find ${filetempbase}/* -printf "%p;" | sort --version-sort)				
+				do
+					STRING=`basename "$TF" .pdf | sed 's/[0-9][0-9][0-9]##CC##//g' `			
+					#STRING=`echo -e "$TF" | sed 's/.pdf//g'`
+					echo -e "${STRING}, ${PAGE}"  >> $TEMPFILE
+					PAGET=`pdftk "$TF" dump_data | grep NumberOfPages | sed 's/[^0-9]//g'`
+					#zenity  --info --title "File elaborato:"  --text="$STRING, $PAGET" --no-wrap
+					(( PAGE = PAGE + PAGET ))
+				done
+				
+				IFS=${TEMPIFS}
+				
+				#zenity  --question --title="Opzione Indice" --text="Editare l'indice autogenerato?"
+				#if [[ $? = 0 ]]
+				#then
+				$EDITOR $TEMPFILE &
+				wait %1 
+				zenity  --info --title "In attesa"  --text="Una volta finita l'elaborazione premere OK"
+				#fi
+
+				iconv -t LATIN9//TRANSLIT $TEMPFILE | a2ps -1 -M A4 -f 14 --borders=no -B -o ${TEMPFILE}.ps 
+			
+				ps2pdf ${TEMPFILE}.ps  ${TEMPFILE}.pdf
+				cp "${TEMPFILE}.pdf" "${filetempbase}/000$(basename $TEMPFILE).pdf"
+				#filesall="${TEMPFILE}.pdf" ${filesall}
+				
+				#zenity  --info --title "In attesa"  --text="cp \"${TEMPFILE}.pdf\" \"${filetempbase}/000$(basename $TEMPFILE).pdf\""
+				rm -f $TEMPFILE
+				rm -f ${TEMPFILE}.ps
+				
+				#IFS=${TEMPIFS}
+			;;
+			
+			"Nessun indice" )
+				#break
+			;;
+		
+		esac
+		
+		
+
+	fi
+
+	
+	PACK=`zenity --entry --title="Inserire il nome del file" --entry-text='Joined'`
+	[ -e "$PACK.pdf" ] && PACK=`mktemp -u --tmpdir=$PERCORSO $PACK-XXX`
+	
+		
+	/usr/bin/pdftk $filetempbase/* cat output "$PACK.pdf" && $VISUAL "$PACK.pdf" || zenity --warning --title \
+		"PDFJoin" --text "La costruzione del file ha avuto un esito negativo."
+		
+	[ -e "$TEMPFILE.pdf" ] && rm -f $TEMPFILE.pdf
+	rm -fR ${filetempbase}
+
+fi
+
+exit 0

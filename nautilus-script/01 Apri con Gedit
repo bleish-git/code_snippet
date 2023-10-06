@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Nautilus script -> open gedit
+#
+
+#
+filesall=""
+while [ $# -gt 0 ]
+	do
+		files=`echo "$1" | sed 's/ /\?/g'`
+		filesall=${filesall}\ $files
+		shift
+	done
+/usr/bin/gedit $filesall &

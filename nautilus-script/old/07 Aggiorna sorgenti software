@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo apt-get update && zenity --info --title "Update" --text "Sorgenti software aggiornate." \
+|| zenity --warning --title "Error" --text "Impossiible aggiornare le sorgenti software."

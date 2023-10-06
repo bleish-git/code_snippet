@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+# Autore: Bleish [manubia AT tiscali DOT it]
+# Licenza: GPL 2 or later
+#
+# Dipendenze:
+#		zenity
+#		svn
+#
+
+2>&1
+
+TEMPO=`tempfile --prefix="SVNbuild"`
+
+TIPO="-s" 	#compila un pacchetto singolo
+
+exec > $TEMPO
+
+PERCORSO=`pwd`
+
+[ -n "$PERCORSO" ] && cd "$PERCORSO"
+
+#if [ $# -eq 0 ]; then
+#	zenity --title="SVNbuild" --error --title="Attenzione"\
+# --text="Seleziona la cartella in cui operare."
+#        exit 1
+#fi
+
+gnome-terminal --geometry=120x25 -x tail -f $TEMPO &
+
+PACK=`zenity --entry --title="SVNbuild" --text="Inserire il nome del pacchetto"`
+
+svn co http://svn.gnome.org/svn/$PACK/trunk/ $PACK
+
+VER=`zenity --entry --title="SVNbuild" --text="Inserire la versione"`
+PER=$PACK-$VER
+
+mv $PACK $PER
+
+cd $PER
+
+
+echo 												
+echo 													
+echo 	"Generazione dei file di configurazione"		
+echo														
+echo 													
+
+./autogen.sh 
+
+echo 													
+echo 													
+echo		"Debianizzazione"
+echo 												
+echo 												
+
+echo \
+ | dh_make $TIPO -e bleish@gmail.com -n -copyright gpl --packagename $PACK 
+
+echo
+echo
+echo		"Configure"
+echo
+echo
+
+CFLAGS="-Wall -g -O2" ./configure --host=i486-linux-gnu --build=i486-linux-gnu --prefix=/usr --mandir=${prefix}/share/man --infodir=${prefix}/share/info
+
+echo
+echo
+echo		"Compilazione e Build"
+echo
+echo
+
+sudo debuild binary 
+
+cd ..
+
+sudo chown -R bleish:bleish *
+echo Compilazione del pacchetto terminata.
+sudo rm -f $TEMPO

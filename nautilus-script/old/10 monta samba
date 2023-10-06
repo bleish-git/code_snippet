@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Author: bleish
+#
+# monta ua condivisione samba
+
+IP=`zenity --entry --title="SMBOn" --text="Inserire indirizzo dell'host" --entry-text="192.168.0.33"`
+
+LISTA=`smbclient -L ${IP} -N | grep Disk | sed 's/Disk*//g'| sed '/print/d'| sed 's/ *$//' | sed 's/^[[:blank:]]*//g'`
+
+RISPOSTA=$(zenity --title "Elenco delle condivisioni" --text "Scegliere una cartella" --list --radiolist \
+		--width=450 --height=300 --column " " --column "Percorso" `echo "$LISTA" | \
+		sed 's/\ /?/g' |mawk '{ printf "False %s ", $0 }'` | sed 's/?/ /g')
+
+
+#zenity  --question --title "risposta"  --text="`echo -e "$RISPOSTA"`" --no-wrap
+
+sudo mount.cifs "//${IP}/${RISPOSTA}" ~/Scrivania/Decrypt/ -o ip=${IP},password="",iocharset=utf8 \
+	 && nemo /home/bleish/Scrivania/Decrypt --no-desktop --browser \
+	 || zenity --error --title="SMBOn" --text="Impossibile caricare il supporto."
+
+exit 0

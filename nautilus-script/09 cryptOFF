@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Author: bleish
+#
+# smontare la cartella .crypt
+
+/bin/fusermount -u /home/bleish/Decrypt/ && zenity --info --title="cryptOn" --text="Supporto criptato disinserito." 
+
+exit 0

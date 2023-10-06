@@ -1,0 +1,82 @@
+#!/bin/bash
+#
+#	Estrazione di un file di un file xml fattura elettronca contenuto in un p7m
+#	e contestuale visualizzazione in pdf
+#
+#	Richiede wkhtmlpdf, SaxonHE (www.saxonica.com), java
+
+#	2020 - bleish@gmail.com
+#
+
+&>/dev/tty1
+exec > /dev/tty1
+set -x
+
+PERCORSO=`pwd`
+[ -n "$PERCORSO" ] && cd "$PERCORSO"
+
+if [ $# -eq 0 ]; then
+	zenity --title="FE Viewer" --error --title="Attenzione"  --text="Seleziona almeno un file."
+     exit 1
+fi
+
+filesall=""
+onlyname=""
+
+number=1
+filetempbase=`mktemp -d`
+
+while [ $# -gt 0 ]
+	do
+		TT="`printf "%03d" $number`##CC##`basename "$1"`"
+		cp "$1" ${filetempbase}/"$TT"
+
+		(( number = number + 1 ))
+		shift
+	done
+	
+filesall=`find ${filetempbase}/* -printf "\"%p\"" | sort --version-sort`
+onlyname=`find ${filetempbase}/* -printf "\"%f\"\n" | sort --version-sort | sed 's/[0-9][0-9][0-9]##CC##//g'`
+zenity  --question --title "Elenco dei file fattura da visualizzare. Procedere ?"  --text="`echo -e "$onlyname"`" --no-wrap
+
+
+if [[ $? = 0 ]] # la variabile $? memorizza il valore restituito
+then
+	#Implementare qualcosa che distingua file p7m e file xml. Ad esempio:
+	
+	#yourfilenames=`ls ./*.txt`
+	#for eachfile in $yourfilenames
+	#do
+	#   echo $eachfile
+	#done
+	
+	for entry in "$filetempbase"/*
+	do
+		t=$(tempfile)
+		tt=$(tempfile)$(echo "  -  ")$(basename $entry)
+		
+		if [ ${entry: -4} == ".p7m" ]
+		then
+			openssl smime -verify -in "$entry" -noverify -inform DER -out "$t"
+			java  -jar /home/bleish/SaxonHE10-2J/saxon-he-10.2.jar "$t" -xsl:/home/bleish/FoglioStileAssoSoftware.xsl | wkhtmltopdf - "$tt.pdf"
+			
+		elif [ ${entry: -4} == ".xml" ]
+		then
+			java  -jar /home/bleish/SaxonHE10-2J/saxon-he-10.2.jar "$entry" -xsl:/home/bleish/FoglioStileAssoSoftware.xsl | wkhtmltopdf - "$tt.pdf"
+			
+		else
+			zenity --title="FE Viewer" --error --title="Attenzione"  --text="$entry non sembra un file fattura elettronica."
+			continue
+		fi
+		
+		if [ $? -eq	0 ]; then
+			xdg-open "$tt.pdf"
+		fi
+	done
+
+
+
+
+fi
+
+rm -fR ${filetempbase}

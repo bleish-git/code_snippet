@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+#	Estrazione di un file pdf precedentemente firmato in modalità CADES - p7m
+#
+#
+#
+PERCORSO=`pwd`
+[ -n "$PERCORSO" ] && cd "$PERCORSO"
+
+if [ $# -eq 0 ]; then
+	zenity --title="P7M viewer" --error --title="Attenzione"\
+ --text="Seleziona un file."
+        exit 1
+fi
+
+nome=`basename "$1" .p7m`
+
+openssl smime -verify -in "$1" -noverify -inform DER -out "$nome"
+
+if [ $? -ne	0 ]; then
+	zenity --title="P7M viewer" --error --title="Attenzione"\
+ --text="Errore nell'apertura del file"
+fi	

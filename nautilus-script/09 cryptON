@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Author: bleish
+#
+# decriptare la cartella .crypt
+
+zenity --entry --title="cryptOn" --text="Inserire password Encfs:" --hide-text | encfs -S /home/bleish/Scrivania/Cloud/DOC/.crypt /home/bleish/Decrypt \
+&& nemo /home/bleish/Decrypt --browser || zenity --error --title="cryptOn" --text="Impossibile caricare il supporto."
+
+exit 0

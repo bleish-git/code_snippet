@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Nautilus script -> open ghex
+#
+
+#
+filesall=""
+while [ $# -gt 0 ]
+	do
+		files=`echo "$1" | sed 's/ /\?/g'`
+		filesall=${filesall}\ $files
+		shift
+	done
+/usr/bin/ghex $filesall &
